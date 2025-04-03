@@ -1,0 +1,7 @@
+{
+  "name": "rourou violin",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

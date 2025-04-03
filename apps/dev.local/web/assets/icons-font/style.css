@@ -1,0 +1,81 @@
+@font-face {
+  font-family: 'i-font';
+  src: url('i-font.woff2?t=623124') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ifc-box {
+  display: inline-flex;
+  position: relative;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  border: solid 1px #00f;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  color: blue;
+  margin: 5px;
+}
+
+.ifc-icon {
+  font-size: inherit;
+  display: inline-block;
+  font-family: 'i-font';
+  font-style: normal;
+  font-weight: 400;
+  font-variant: normal;
+  text-transform: none;
+  text-rendering: auto;
+  line-height: 1em;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: inherit;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  margin: auto;
+}
+
+/* Animation for spinners */
+.ifc-spin {
+  animation: ifc-spin-f 2s infinite linear;
+  display: inline-block;
+}
+/* @keyframes for IE10~ and major browsers */
+@keyframes ifc-spin-f {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+/* Material Design, License: Pictogrammers Free, Link: https://github.com/Templarian/MaterialDesign/blob/master/LICENSE */
+.ma-theme-light-dark:before {
+  content: '\2711';
+}
+
+/* Font Awesome Free, License: Font Awesome Free, Link: https://github.com/FortAwesome/Font-Awesome/blob/master/LICENSE.txt */
+.fa-apple:before {
+  content: '\2712';
+}
+.fa-android:before {
+  content: '\2713';
+}
+
+/* carbon-icons, License: Apache-2.0, Link: https://github.com/carbon-design-system/carbon-icons/blob/master/LICENSE.md */
+.cb-app-services:before {
+  content: '\2714';
+}
+
+/* Unicons, License: IconScout Simple License, Link: https://github.com/Iconscout/unicons/blob/master/LICENSE */
+.un-16-plus:before {
+  content: '\2715';
+}
+
+/* ant-design-icons, License: MIT, Link: https://github.com/ant-design/ant-design-icons/blob/master/LICENSE */
+.at-drag:before {
+  content: '\2716';
+}

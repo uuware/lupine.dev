@@ -1,0 +1,15 @@
+// some like APPS, HTTP_PORT, SERVER_ROOT_PATH are also used in 'dev-watch.js'
+export const enum ServerEnvKeys {
+  BIND_IP = 'BIND_IP',
+  HTTP_PORT = 'HTTP_PORT',
+  HTTPS_PORT = 'HTTPS_PORT',
+  SSL_KEY_PATH = 'SSL_KEY_PATH',
+  SSL_CRT_PATH = 'SSL_CRT_PATH',
+  WEB_ROOT_MAP = 'WEB_ROOT_MAP',
+  SERVER_ROOT_PATH = 'SERVER_ROOT_PATH',
+  NODE_ENV = 'NODE_ENV',
+  APPS = 'APPS',
+  DOMAINS = 'DOMAINS',
+  DB_TYPE = 'DB_TYPE',
+  DB_FILENAME = 'DB_FILENAME',
+}

@@ -1,0 +1,33 @@
+{
+  "name": "lupine.dev",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "uuware.com",
+  "homepage": "https://uuware.com/",
+  "description": "Lupine.dev is a development environment for LupineJS and LupineApi.",
+  "engines": {
+    "node": ">= 20"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "node ./dev/dev-watch --env=.env.development --dev=1 --cmd=start-dev",
+    "build": "node ./dev/dev-watch --env=.env.production --dev=0 --cmd=start-dev",
+    "start-dev": "node dist/server_root/server/index.js --env=.env.development",
+    "start-production": "node dist/server_root/server/index.js --env=.env.production",
+    "start-production-watch": "node --watch dist/server_root/server/index.js --env=.env.production",
+    "format": "prettier --write \"**/*.{js,json,css,scss,md,html,yaml,ts,jsx,tsx}\""
+  },
+  "dependencies": {
+    "lupine.js": "file:packages/lupine.js",
+    "lupine.api": "file:packages/lupine.api"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "esbuild": "^0.24.2",
+    "prettier": "^2.7.1",
+    "typescript": "^5.7.2"
+  }
+}

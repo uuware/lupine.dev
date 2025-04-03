@@ -1,0 +1,13 @@
+{
+  "appId": "com.uuware.crossplatformlupine",
+  "appName": "lupine.dev",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "../../dist/server_root/dev.local_web",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

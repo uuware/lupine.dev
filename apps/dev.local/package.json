@@ -1,0 +1,76 @@
+{
+  "name": "dev.local",
+  "version": "1.0.0",
+  "main": "electron/main.js",
+  "build": {
+    "appId": "com.uuware.cross-platform-app",
+    "artifactName": "${name}-${os}-${arch}-${version}.${ext}",
+    "extraResources": "electron/extra",
+    "files": [
+      "../../dist/server_root/rourou-violin.com_web/**/*",
+      "electron/main.js",
+      "LICENSE"
+    ],
+    "win": {
+      "target": [
+        "nsis",
+        "portable",
+        "7z",
+        "zip"
+      ],
+      "icon": "electron/build/icons/icon.ico"
+    },
+    "mac": {
+      "target": [
+        "zip",
+        "dmg"
+      ],
+      "category": "public.app-category.lifestyle",
+      "darkModeSupport": true,
+      "entitlements": "electron/configuration/osx/entitlements.mac.plist",
+      "entitlementsInherit": "electron/configuration/osx/entitlements.mac.plist",
+      "hardenedRuntime": true,
+      "icon": "electron/build/icons/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "tar.gz",
+        "appImage"
+      ],
+      "icon": "electron/build/icons/icon.png",
+      "category": "Utility",
+      "synopsis": "A very short description, like a slogan",
+      "description": "A description of the application on what it does."
+    },
+    "portable": {
+      "artifactName": "${name}-${os}-${arch}-portable-${version}.${ext}"
+    },
+    "msi": {
+      "oneClick": false,
+      "warningsAsErrors": false
+    },
+    "nsis": {
+      "allowElevation": true,
+      "oneClick": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "differentialPackage": false,
+      "artifactName": "${name}-${os}-${arch}-installer-${version}.${ext}",
+      "allowToChangeInstallationDirectory": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "uuware.com",
+        "repo": "cross-platform-lupine",
+        "releaseType": "draft"
+      }
+    ]
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.16"
+  },
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.17"
+  }
+}

@@ -1,0 +1,35 @@
+import { OneLangProps } from 'lupine.api';
+
+export const apiLangEn: OneLangProps = {
+  langName: 'en',
+  langs: {
+    'shared:wrong_parameters': 'Wrong parameters.',
+    'shared:record_not_found': 'Record not found.',
+    'shared:record_not_updated': 'Record not updated.',
+    'shared:record_updated': 'Record updated.',
+    'shared:record_creation_failed': 'Record creation failed.',
+    'shared:record_loaded': 'Record loaded.',
+    'shared:record_deleted': 'Record deleted.',
+    'shared:file_too_large': 'File is too large.',
+    'shared:file_uploaded': 'You have uploaded a file.',
+    'shared:file_not_found': 'File not found.',
+    'shared:wrong_file_extension': 'Wrong file extension.',
+    'shared:file_part_updated': 'Part file is uploaded.',
+    'shared:file_update_failed': 'Failed to upload.',
+    'shared:configuration_updated': 'Configuration updated.',
+    'shared:user_not_activated': 'Account not activated.',
+    'shared:wrong_email_format': 'Wrong email format.',
+    'shared:register_failed': 'Register failed, please contact administrator.',
+    'shared:send_email_notification': 'Email notification sent.',
+    'shared:updated_profile': 'Profile updated.',
+    'shared:password_length_wrong': 'Password length is wrong, must be at least {len} characters.',
+    'shared:no_update_for_special_user': 'This is a special user, cannot update profile.',
+    'shared:login_failed_too_many_times': 'Login failed too many times, please wait {minutes} minutes to retry.',
+    'shared:register_username_exists':
+      'This username already exists, please input a new email or reset your current account password.',
+    'shared:send_email_activation': 'Activation code sent to your email.',
+    'shared:send_and_copy_activation': 'Activation code sent to your email, please copy it to reset your password.',
+    'shared:wrong_activation': 'Wrong activation code.',
+    'shared:password_reset_success': 'Password reset successfully, please login.',
+  },
+};

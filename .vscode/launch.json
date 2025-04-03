@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "JS: Frontend",
+      "request": "launch",
+      "type": "chrome",
+      "url": "http://localhost:11080",
+      "webRoot": "${workspaceFolder}/dist/server_root/dev.local_web"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Node: Backend",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "console": "integratedTerminal"
+    }
+  ],
+  "compounds": [
+    {
+      "name": "LupineJS: Frontend & Backend",
+      "configurations": ["Node: Backend", "JS: Frontend"]
+    }
+  ]
+}
