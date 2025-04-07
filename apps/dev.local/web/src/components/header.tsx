@@ -8,6 +8,11 @@ export const Header = (props: { title: string; subtitle?: string }) => {
     maxWidth: MediaQueryMaxWidth.DesktopMax,
     margin: 'auto',
     position: 'relative',
+    '.header-user': {
+      position: 'absolute',
+      right: '10px',
+      zIndex: 10,
+    },
     '.logo-box': {
       height: '100px',
       width: '100px',
@@ -52,6 +57,9 @@ export const Header = (props: { title: string; subtitle?: string }) => {
   };
   return (
     <div css={css}>
+      <div class='header-user'>
+        <UserInfo />
+      </div>
       <div class='logo-box'>
         <img class='logo' src={`/api/image/${webSetting('siteLogo', '(not set)')}`} />
       </div>

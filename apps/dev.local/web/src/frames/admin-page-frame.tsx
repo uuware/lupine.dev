@@ -30,7 +30,7 @@ export const AdminPageFrame = async (placeholderClassname: string, vnode: VNode<
 
   return (
     <div css={cssContainer}>
-      <Header title='管理页面' subtitle={'ver: ' + webEnv('APP_VERSION', '1.0.0')}></Header>
+      <Header title='管理页面 (Lupine.Dev)' subtitle={'ver: ' + webEnv('APP_VERSION', '1.0.0')}></Header>
       <MenuBar items={defaultTopMenu} maxWidthMobileMenu={'800px'} maxWidth={MediaQueryMaxWidth.DesktopMax}></MenuBar>
       <div class={'content-block ' + placeholderClassname}>{vnode}</div>
       <div class='top-footer'>
