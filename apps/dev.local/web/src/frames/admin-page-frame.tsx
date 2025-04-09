@@ -1,4 +1,4 @@
-import { MenuBar, MediaQueryMaxWidth, webSetting, webEnv, VNode, CssProps } from 'lupine.js';
+import { MenuBar, MediaQueryMaxWidth, webSetting, VNode, CssProps, getWebVersion } from 'lupine.js';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
@@ -30,7 +30,7 @@ export const AdminPageFrame = async (placeholderClassname: string, vnode: VNode<
 
   return (
     <div css={cssContainer}>
-      <Header title='管理页面 (Lupine.Dev)' subtitle={'ver: ' + webEnv('APP_VERSION', '1.0.0')}></Header>
+      <Header title='管理页面 (Lupine.Dev)' subtitle={'ver: ' + getWebVersion()}></Header>
       <MenuBar items={defaultTopMenu} maxWidthMobileMenu={'800px'} maxWidth={MediaQueryMaxWidth.DesktopMax}></MenuBar>
       <div class={'content-block ' + placeholderClassname}>{vnode}</div>
       <div class='top-footer'>

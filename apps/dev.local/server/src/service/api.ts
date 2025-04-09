@@ -1,4 +1,4 @@
-import { IApiBase, Logger, ServerRequest, ApiRouter, AdminApi } from 'lupine.api';
+import { IApiBase, Logger, ServerRequest, ApiRouter, AdminApi, addApiVersion, getApiVersion } from 'lupine.api';
 import {
   userLogin,
   userReg,
@@ -16,6 +16,8 @@ import { writeSetting } from './setting-api';
 import { addCfgFile, serveCfgImage } from './admin-api';
 import { ServerResponse } from 'http';
 
+// The version we be set since the app is started
+addApiVersion('20250409');
 const logger = new Logger('api');
 
 export class Api implements IApiBase {
@@ -60,6 +62,7 @@ export class Api implements IApiBase {
       JSON.stringify({
         status: 'OK',
         message: 'Health Check Successful',
+        version: getApiVersion(),
         memoryUsage: process.memoryUsage(),
       })
     );

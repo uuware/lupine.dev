@@ -13,6 +13,7 @@ import {
   bindLang,
   PageProps,
   Redirect,
+  addWebVersion,
 } from 'lupine.js';
 import { fetchData } from './services/fetch-data';
 import { themes } from './styles/theme';
@@ -43,6 +44,7 @@ if (typeof window !== 'undefined' && webEnv(ClientEnvKeys.NODE_ENV, '') === 'dev
   debugWatch(webEnv(ClientEnvKeys.API_PORT, 0));
 }
 
+addWebVersion('20250409');
 bindLang('zh-cn', {});
 bindTheme('light', themes);
 bindGlobalStyles('comm-css', ':root', baseCss);
@@ -106,7 +108,6 @@ userPageRouter.use('/page1/:parameter1/fixed-section/:parameter2/?option1/', Pag
 userPageRouter.use('/page2/:parameter1/fixed-section/:parameter2/?option1/', Page2Page);
 userPageRouter.use('/', UserHomePage);
 
-
 const frame1PageRouter = new PageRouter();
 frame1PageRouter.setFramePage({
   component: Frame1PageFrame,
@@ -116,7 +117,6 @@ frame1PageRouter.use('/page1', Page1Page);
 frame1PageRouter.use('/page2', Page2Page);
 frame1PageRouter.use('*', Page1Page);
 
-
 const frame2PageRouter = new PageRouter();
 frame2PageRouter.setFramePage({
   component: Frame2PageFrame,
@@ -125,7 +125,6 @@ frame2PageRouter.setFramePage({
 frame2PageRouter.use('/page1', Page1Page);
 frame2PageRouter.use('/page2', Page2Page);
 frame2PageRouter.use('*', Page1Page);
-
 
 const pageRouter = new PageRouter();
 pageRouter.setFramePage({
@@ -138,7 +137,6 @@ pageRouter.use('/admin', adminPageRouter);
 pageRouter.use('/user', userPageRouter);
 pageRouter.use('/frame1', frame1PageRouter);
 pageRouter.use('/frame2', frame2PageRouter);
-
 
 pageRouter.use('/login', LoginPage);
 pageRouter.use('/register', RegisterPage);

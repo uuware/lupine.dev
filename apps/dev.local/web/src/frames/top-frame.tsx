@@ -1,5 +1,4 @@
-import { VNode, CssProps, webEnv } from 'lupine.js';
-import { UserInfo } from '../components/user-info';
+import { VNode, CssProps, getWebVersion } from 'lupine.js';
 
 export const TopFrame = async (placeholderClassname: string, vnode: VNode<any>) => {
   const cssContainer: CssProps = {
@@ -14,7 +13,7 @@ export const TopFrame = async (placeholderClassname: string, vnode: VNode<any>) 
     },
   };
 
-  console.log('version', webEnv('APP_VERSION', '1.0.0'));
+  console.log('Web version: ', getWebVersion());
   return (
     <div css={cssContainer}>
       {/* Can't put css on this placeholder node! */}
