@@ -5,7 +5,6 @@ import {
   appStart,
   bindRenderPageFunctions,
   defaultDbConfig,
-  defaultLogConfig,
   getRenderPageFunctions,
   loadEnv,
 } from 'lupine.api';
@@ -18,7 +17,6 @@ const initAndStartServer = async () => {
   await loadEnv(envFile);
   bindRenderPageFunctions({ fetchData });
 
-  const logConfig = { ...defaultLogConfig, folder: 'dist/log' };
   const dbConfig = { ...defaultDbConfig };
   const serverRootPath = path.resolve(process.env[ServerEnvKeys.SERVER_ROOT_PATH]!);
   const apps = (process.env[ServerEnvKeys.APPS] || '').split(',');
@@ -36,7 +34,6 @@ const initAndStartServer = async () => {
       dataPath: path.join(serverRootPath, app + '_data'),
       apiPath: path.join(serverRootPath, app + '_api'),
       dbType: process.env[`${ServerEnvKeys.DB_TYPE}@${app}`] || process.env[`${ServerEnvKeys.DB_TYPE}`] || 'sqlite',
-      logConfig: logConfig,
       dbConfig: { ...dbConfig, filename: dbFilename },
     });
   }
@@ -51,7 +48,6 @@ const initAndStartServer = async () => {
   appStart.start({
     renderPageFunctions: getRenderPageFunctions(),
     debug: process.env[ServerEnvKeys.NODE_ENV] === 'development',
-    logConfig: { ...defaultLogConfig },
     apiConfig: {
       serverRoot: `${serverRootPath}`,
       webHostMap: webRootMap,

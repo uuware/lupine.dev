@@ -148,3 +148,9 @@ On Windows OS, the hosts file is located at:
 C:\Windows\System32\Drivers\etc\hosts
 ```
 You may need proper permission to edit it.
+
+
+How to check Code frequency (steps)
+https://api.github.com/repos/uuware/lupine.dev/languages
+Or
+Github -> Code -> Insights -> Code frequency
