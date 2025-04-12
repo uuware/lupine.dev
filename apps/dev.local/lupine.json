@@ -1,9 +1,19 @@
 {
   "name": "dev.local",
-  "entryPoint": "web/src/index.tsx",
-  "indexHtml": "web/src/index.html",
+  "entryPoints": [
+    {
+      "index": "web/src/index.tsx",
+      "html": "web/src/index.html",
+      "outdir": "/"
+    },
+    {
+      "index": "web/src/admin_dev/index.tsx",
+      "html": "web/src/admin_dev/index.html",
+      "outdir": "/admin_dev"
+    }
+  ],
   "entryPointApi": "server/src/index.ts",
-  "watchFiles": ["web/src/index.html", "web/assets/styles/global.css", "icons-font.config.js"],
+  "watchFiles": ["web/assets/styles/global.css", "icons-font.config.js"],
   "copyFiles": [
     {
       "type": "web",

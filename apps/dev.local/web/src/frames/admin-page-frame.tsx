@@ -3,10 +3,10 @@ import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 
 const defaultTopMenu = [
-  { text: '首页', url: '/' },
-  { text: '管理列表', url: '/admin/music-list' },
-  { text: '管理用户', url: '/admin/user' },
-  { text: '管理网站', url: '/admin/cfg' },
+  { text: 'Home', url: '/' },
+  { text: 'Manage List', url: '/admin/music-list' },
+  { text: 'Manage Users', url: '/admin/user' },
+  { text: 'Manage Website', url: '/admin/cfg' },
 ];
 
 export const AdminPageFrame = async (placeholderClassname: string, vnode: VNode<any>) => {
@@ -30,7 +30,7 @@ export const AdminPageFrame = async (placeholderClassname: string, vnode: VNode<
 
   return (
     <div css={cssContainer}>
-      <Header title='管理页面 (Lupine.Dev)' subtitle={'ver: ' + getWebVersion()}></Header>
+      <Header title='Admin Page (Lupine.Dev)' subtitle={'ver: ' + getWebVersion()}></Header>
       <MenuBar items={defaultTopMenu} maxWidthMobileMenu={'800px'} maxWidth={MediaQueryMaxWidth.DesktopMax}></MenuBar>
       <div class={'content-block ' + placeholderClassname}>{vnode}</div>
       <div class='top-footer'>

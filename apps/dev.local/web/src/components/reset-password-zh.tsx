@@ -74,12 +74,12 @@ export const ResetPasswordPage = async (props: PageProps) => {
   const onCode = async () => {
     const username = DomUtils.getValue('.u-name')!;
     if (!username) {
-      NotificationMessage.sendMessage('Please enter your username', NotificationColor.Error);
+      NotificationMessage.sendMessage('请输入用户名', NotificationColor.Error);
       return;
     }
     const auth = await fetchCode(username);
     if (auth.status === 'ok') {
-      NotificationMessage.sendMessage('Verification code has been sent to your email, please copy and paste it here', NotificationColor.Success);
+      NotificationMessage.sendMessage('验证码已发送到您的邮箱，请复制并粘贴到此处', NotificationColor.Success);
 
       // const loginButton = DomUtils.bySelector('.login-button button') as HTMLButtonElement;
       // loginButton.disabled = false;
@@ -93,20 +93,20 @@ export const ResetPasswordPage = async (props: PageProps) => {
     const password2 = DomUtils.getValue('.u-pass2')!;
     const authCode = DomUtils.getValue('.u-code')!;
     if (!username || !password || !password2 || !authCode) {
-      NotificationMessage.sendMessage('Please enter your username, password, and verification code', NotificationColor.Error);
+      NotificationMessage.sendMessage('请输入用户名、密码和验证码', NotificationColor.Error);
       return;
     }
     if (password !== password2) {
-      NotificationMessage.sendMessage('The two passwords do not match', NotificationColor.Error);
+      NotificationMessage.sendMessage('两次输入的密码不一致', NotificationColor.Error);
       return;
     }
     if (password.length < 6) {
-      NotificationMessage.sendMessage('Password length must be at least 6 characters', NotificationColor.Error);
+      NotificationMessage.sendMessage('密码长度至少为6位', NotificationColor.Error);
       return;
     }
     const auth = await fetchReset(username, password, authCode);
     if (auth.status === 'ok') {
-      NotificationMessage.sendMessage('Password reset successfully, please login', NotificationColor.Success);
+      NotificationMessage.sendMessage('密码重置成功，请登录', NotificationColor.Success);
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }
@@ -115,51 +115,51 @@ export const ResetPasswordPage = async (props: PageProps) => {
   return (
     <div css={css} class='admin-login'>
       <div class='top-header'>
-        <div class='top-title'>Reset Password</div>
+        <div class='top-title'>重置密码</div>
       </div>
       <div class='top-content'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>Username (Email):</div>
+            <div class='label'>用户名 (邮箱):</div>
             <div>
               <input class='input-base u-name' type='text' />
             </div>
           </div>
           <div class='row-box code-button'>
             <button onClick={() => onCode()} class='button-base'>
-              Send Verification Code
+              发送验证码
             </button>
           </div>
           <div class='row-box'>
-            <div class='label'>Verification Code:</div>
+            <div class='label'>验证码:</div>
             <div>
               <input class='input-base u-code' type='text' />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>New Password:</div>
+            <div class='label'>新密码:</div>
             <div>
               <input class='input-base u-pass' type='password' />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>Confirm Password:</div>
+            <div class='label'>确认密码:</div>
             <div>
               <input class='input-base u-pass2' type='password' />
             </div>
           </div>
           <div class='row-box login-button'>
             <button onClick={() => onLogin()} class='button-base'>
-              Reset Password
+              重置密码
             </button>
           </div>
           <div class='row-box login-tip'>
-            * Use password login? <a href='/login'>Go to login</a> or <a href='/'>Home</a>
+            * 用密码登录？<a href='/login'>去登录</a>或者<a href='/'>首页</a>
           </div>
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>Sample</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2024 <a href='/'>GFF.com</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );

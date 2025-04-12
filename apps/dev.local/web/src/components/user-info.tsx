@@ -74,9 +74,9 @@ export const UserInfo = (props?: any) => {
       } else {
         dom.value = (
           <div class='login-links'>
-            <a href='/login'>登录</a>
+            <a href='/login'>Login</a>
             <a href='/register' class='ml-m'>
-              注册
+              Register
             </a>
           </div>
         );

@@ -1,8 +1,8 @@
-import { MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.js';
+import { CssProps, MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.js';
 import { HomeSearchComponent } from '../components/home-search-component';
 
 export const UserHomePage = async (props: PageProps) => {
-  const css: any = {
+  const css: CssProps = {
     display: 'flex',
     flexDirection: 'column',
     flex: '1',

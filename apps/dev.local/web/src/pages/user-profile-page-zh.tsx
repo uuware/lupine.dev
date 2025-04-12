@@ -47,15 +47,15 @@ const PageContent = ({ user }: { user: UserInfoType }) => {
     const password = DomUtils.getValue('.f-password');
     const password2 = DomUtils.getValue('.f-password2');
     if (!nickname) {
-      NotificationMessage.sendMessage('Prefer name can\'t be empty', NotificationColor.Error);
+      NotificationMessage.sendMessage('网名不能为空', NotificationColor.Error);
       return;
     }
     if (password && password !== password2) {
-      NotificationMessage.sendMessage('The two passwords do not match', NotificationColor.Error);
+      NotificationMessage.sendMessage('两次输入的密码不一致', NotificationColor.Error);
       return;
     }
     if (password && password.length < 6) {
-      NotificationMessage.sendMessage('Password length must be at least 6 characters', NotificationColor.Error);
+      NotificationMessage.sendMessage('密码长度不能小于6位', NotificationColor.Error);
       return;
     }
     const data: any = {
@@ -65,7 +65,7 @@ const PageContent = ({ user }: { user: UserInfoType }) => {
 
     const result = await getRenderPageProps().renderPageFunctions.fetchData('/api/user-profile', JSON.stringify(data));
     console.log(result);
-    NotificationMessage.sendMessage(result.json.message || 'Update success', NotificationColor.Success);
+    NotificationMessage.sendMessage(result.json.message || '更新成功', NotificationColor.Success);
     setTimeout(() => {
       document.location.reload();
     }, 1000);
@@ -77,26 +77,26 @@ const PageContent = ({ user }: { user: UserInfoType }) => {
       </div>
       <div class='row-box'>
         <button class='button-base' onClick={onSave}>
-          Update
+          更新
         </button>{' '}
-        <div>(Password will not be updated if it is empty)</div>
+        <div>（密码为空时将不更新密码）</div>
       </div>
       <div class='row-box mt-l'>
-        <label class='m-label'>Email:</label> {user.email}
+        <label class='m-label'>邮箱:</label> {user.email}
       </div>
       <div class='row-box mt-l'>
-        <label class='m-label'>Type:</label> {user.usertype}
+        <label class='m-label'>类型:</label> {user.usertype}
       </div>
       <hr />
       <div class='row-box'>
-        <label class='m-label'>Prefer name:</label>{' '}
+        <label class='m-label'>网名:</label>{' '}
         <input type='text' class='input-base m-text f-nickname' value={user.nickname} />
       </div>
       <div class='row-box'>
-        <label class='m-label'>Password:</label> <input type='password' class='input-base m-text f-password' value='' />
+        <label class='m-label'>密码:</label> <input type='password' class='input-base m-text f-password' value='' />
       </div>
       <div class='row-box'>
-        <label class='m-label'>Confirm password:</label>{' '}
+        <label class='m-label'>确认密码:</label>{' '}
         <input type='password' class='input-base m-text f-password2' value='' />
       </div>
     </div>

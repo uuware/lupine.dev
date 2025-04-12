@@ -6,10 +6,11 @@ import {
   NotificationColor,
   PageProps,
   RefProps,
+  CssProps,
 } from 'lupine.js';
 
 export const AdminUserPage = async (props: PageProps) => {
-  const css: any = {
+  const css: CssProps = {
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -56,8 +57,8 @@ export const AdminUserPage = async (props: PageProps) => {
   };
 
   const onBlock = async (user: any, block: string) => {
-    const blockText = block === '1' ? '阻止' : '允许';
-    if (!confirm('要 ' + blockText + ' 当前用户登陆吗？')) {
+    const blockText = block === '1' ? 'Block' : 'Allow';
+    if (!confirm('Do you want to ' + blockText + ' this user login?')) {
       return;
     }
     const result = await getRenderPageProps().renderPageFunctions.fetchData(
@@ -88,34 +89,34 @@ export const AdminUserPage = async (props: PageProps) => {
             <div class={'row-top row-' + user.id}>
               <div class='row-box'>
                 <label class='u-name'>
-                  用户: {user.username}, Id: {user.id}
+                  User: {user.username}, Id: {user.id}
                 </label>
                 <label class='ml-m'>{user.block === '1' ? ' (Blocked)' : ''}</label>
               </div>
               <div class='row-box'>
-                <label class='u-name mr-m'>注册：{formatTime(user.registerdate)}, </label>
-                <label class='u-name mr-m'>最后登录：{formatTime(user.lastvisitdate)}, </label>
-                <label class='u-point mr-m'>类型：</label>
+                <label class='u-name mr-m'>Registered: {formatTime(user.registerdate)}, </label>
+                <label class='u-name mr-m'>Last login: {formatTime(user.lastvisitdate)}, </label>
+                <label class='u-point mr-m'>Type:</label>
                 <select class='u-usertype'>
                   <option value='admin' selected={user.usertype === 'admin'}>
-                    管理
+                    Admin
                   </option>
                   <option value='user' selected={user.usertype !== 'admin'}>
-                    普通
+                    User
                   </option>
                 </select>
-                <label class='u-point ml-m'>密码：</label>
+                <label class='u-point ml-m'>Password:</label>
                 <input type='password' value='' class='input-base u-pass' />
                 <button class='button-base' onClick={() => onUpdate(user)}>
-                  更新
+                  Update
                 </button>
                 {user.block === '1' ? (
                   <button class='button-base' onClick={() => onBlock(user, '0')}>
-                    解除
+                    Unblock
                   </button>
                 ) : (
                   <button class='button-base ml-s' onClick={() => onBlock(user, '1')}>
-                    阻止
+                    Block
                   </button>
                 )}
               </div>

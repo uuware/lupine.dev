@@ -150,7 +150,32 @@ C:\Windows\System32\Drivers\etc\hosts
 You may need proper permission to edit it.
 
 
-How to check Code frequency (steps)
+# How to make a sub-folder (app) ?
+Make a folder in apps's src folder, for example, `admin_dev`.
+
+```
+apps\[your-app-name]\web\src\admin_dev
+```
+
+And add `index.html` and `index.tsx` in the folder.
+In `index.html`, it should load the `index.js` file in absolute path:
+
+```
+<script defer src="/admin_dev/index.js#t={hash}"></script>
+```
+
+In `apps\[your-app-name]\lupine.json`, add the following code to `entryPoints`:
+
+```
+    {
+      "index": "web/src/admin_dev/index.tsx",
+      "html": "web/src/admin_dev/index.html",
+      "outdir": "/admin_dev"
+    }
+
+```
+
+# How to check Code frequency (steps)
 https://api.github.com/repos/uuware/lupine.dev/languages
 Or
 Github -> Code -> Insights -> Code frequency

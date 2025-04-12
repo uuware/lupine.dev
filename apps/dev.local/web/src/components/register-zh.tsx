@@ -105,48 +105,48 @@ export const RegisterPage = async (props: PageProps) => {
   return (
     <div css={css} class='admin-login'>
       <div class='top-header'>
-        <div class='top-title'>Register</div>
+        <div class='top-title'>注册账号</div>
       </div>
       <div class='top-content'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>Username (Email)：</div>
+            <div class='label'>用户名 (Email)：</div>
             <div>
               <input class='input-base u-name' type='text' maxLength={50} />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>Password:</div>
+            <div class='label'>密码：</div>
             <div>
               <input class='input-base u-pass' type='password' maxLength={50} />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>Preferred Name:</div>
+            <div class='label'>网名：</div>
             <div>
               <input class='input-base u-pname' type='text' maxLength={50} />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>Gender:</div>
+            <div class='label'>性别：</div>
             <div>
-              <input class='u-male' type='radio' name='sex' id='male' /> <label for='male'>Male</label>
-              <input class='u-female ml-l' type='radio' name='sex' id='female' /> <label for='female'>Female</label>
+              <input class='u-male' type='radio' name='sex' id='male' /> <label for='male'>男</label>
+              <input class='u-female ml-l' type='radio' name='sex' id='female' /> <label for='female'>女</label>
             </div>
           </div>
           <div class='row-box login-button'>
             <button onClick={() => onSubmit()} class='button-base'>
-              Register
+              注册
             </button>
           </div>
           <div class='row-box login-tip'>
-            * Already have an account? <a href='/login'>Login</a> or
-            <a href='/'>Home</a>
+            * 已经有一个账号了？ <a href='/login'>登录</a>或者
+            <a href='/'>首页</a>
           </div>
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>Sample</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2024 <a href='/'>揉揉酱</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );

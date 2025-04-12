@@ -1,8 +1,8 @@
-import { MediaQueryRange, PageProps } from 'lupine.js';
+import { CssProps, MediaQueryRange, PageProps } from 'lupine.js';
 import { HomeSearchComponent } from '../components/home-search-component';
 
 export const AdminItemListPage = async (props: PageProps) => {
-  const css: any = {
+  const css: CssProps = {
     display: 'flex',
     flexDirection: 'column',
     flex: '1',

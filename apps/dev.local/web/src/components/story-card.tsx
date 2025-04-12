@@ -58,9 +58,9 @@ export const StoryCard = (props: StoryCardShortProps) => {
     initializePage(`/admin/music-edit/${props.id}`);
   };
   const onDelete = async () => {
-    if (confirm('确定要删除这条记录和相关的文件吗？')) {
+    if (confirm('Are you sure you want to delete this record and related files?')) {
       ref.current?.parentElement.remove();
-      NotificationMessage.sendMessage('删除成功', NotificationColor.Success);
+      NotificationMessage.sendMessage('Delete successfully', NotificationColor.Success);
     }
   };
   const ref: RefProps = {};
@@ -69,10 +69,10 @@ export const StoryCard = (props: StoryCardShortProps) => {
       {props.management && (
         <div class='story-card-buttons pr-s'>
           <button class='button-base button-ss' onClick={onEdit}>
-            编辑
+            Edit
           </button>
           <button class='button-base button-ss' onClick={onDelete}>
-            删除
+            Delete
           </button>
         </div>
       )}

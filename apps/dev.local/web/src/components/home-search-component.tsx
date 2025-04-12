@@ -1,4 +1,4 @@
-import { CssProps, getRenderPageProps, HtmlVar, initializePage, RefProps } from 'lupine.js';
+import { CssProps, HtmlVar, initializePage, RefProps } from 'lupine.js';
 import { StoryListComponent } from './story-list';
 import { StoryCardShortProps } from './story-props';
 
@@ -16,9 +16,9 @@ export const getMusicList = async (management: boolean) => {
       (_, index) =>
         ({
           id: index + 1,
-          title: `琴谱 ${index + 1}`,
+          title: `Title ${index + 1}`,
           cover_file: `/assets/images/sample.png`,
-          author: `作者 ${index + 1}`,
+          author: `Author ${index + 1}`,
           view_count: 100 + index,
           download_count: 50 + index,
           collect_count: 30 + index,
@@ -102,25 +102,25 @@ export const HomeSearchComponent = (props: SearchMusicProps) => {
   return (
     <div css={css} class='search-music-box' ref={ref}>
       <div className='row-box search-box m-auto p-m w-100p'>
-        <input class='input-base txt-search flex-1' type='text' placeholder='请输入琴谱名，演唱者等关键词' />
+        <input class='input-base txt-search flex-1' type='text' placeholder='Please input keywords' />
         <button class='button-base btn-search' onClick={onSearch}>
-          搜索
+          Search
         </button>
         {props.management && (
           <button class='button-base btn-add ml-m' onClick={onAdd}>
-            添加
+            Add
           </button>
         )}
       </div>
       <div class='navigation-bar-box mt-m'>
         <div class='navigation-bar'>
-          <div class='navigation-item active'>全部</div>
-          <div class='navigation-item'>华语</div>
-          <div class='navigation-item'>欧美</div>
-          <div class='navigation-item'>日韩</div>
-          <div class='navigation-item'>次元</div>
-          <div class='navigation-item'>古风</div>
-          <div class='navigation-item'>简易</div>
+          <div class='navigation-item active'>All</div>
+          <div class='navigation-item'>Chinese</div>
+          <div class='navigation-item'>Europe</div>
+          <div class='navigation-item'>Asia</div>
+          <div class='navigation-item'>Dimension</div>
+          <div class='navigation-item'>Ancient</div>
+          <div class='navigation-item'>Simple</div>
         </div>
       </div>
       <div class='search-result-box'>{dom.node}</div>

@@ -55,10 +55,7 @@ const watchServer = async (isDev, npmCmd, httpPort, serverRootPath) => {
     bundle: true,
     treeShaking: true,
     metafile: true,
-    external: [
-      'better-sqlite3',
-      'nodemailer',
-    ],
+    external: ['better-sqlite3', 'nodemailer'],
     minify: !isDev,
     plugins: [watchServerPlugin(isDev, npmCmd, httpPort)],
   });
@@ -69,7 +66,7 @@ const watchServer = async (isDev, npmCmd, httpPort, serverRootPath) => {
 
 const copyCache = new Map();
 const clientProcessOnEnd = async (saved) => {
-  cpIndexHtml(saved.indexHtml, path.join(saved.outdir, 'index.html'), saved.appName);
+  saved.indexHtml && cpIndexHtml(saved.indexHtml, path.join(saved.outdir, 'index.html'), saved.appName);
 
   const assets = saved['copyFiles'];
   if (assets) {
@@ -151,10 +148,7 @@ const watchApi = async (saved, isDev, entryPoints) => {
     bundle: true,
     treeShaking: true,
     metafile: true,
-    external: [
-      'better-sqlite3',
-      'nodemailer',
-    ],
+    external: ['better-sqlite3', 'nodemailer'],
     minify: !isDev,
     plugins: [watchApiPlugin(isDev, saved.httpPort)],
   });
@@ -218,12 +212,10 @@ const start = async () => {
     // create data folder
     await fs.mkdir(`${serverRootPath}/${appName}_data`, { recursive: true });
 
-    const entryPoint = `${appDir}/${appCfg['entryPoint']}`;
     const saved = {
       isDev,
       appName,
       httpPort,
-      indexHtml: `${appDir}/${appCfg['indexHtml']}`,
       serverRoot: serverRootPath,
       outdir: `${serverRootPath}/${appName}_web`,
       outdirApi: `${serverRootPath}/${appName}_api`,
@@ -235,7 +227,23 @@ const start = async () => {
             : `${serverRootPath}/${appName}_web/${item.to}`,
       })),
     };
-    watchClient(saved, isDev, [entryPoint], path.dirname(entryPoint));
+
+    appCfg['entryPoints'].forEach((item, index) => {
+      const entryPoint = `${appDir}/${item.index}`;
+      const indexHtml = `${appDir}/${item.html}`;
+      watchClient(
+        {
+          ...saved,
+          outdir: `${serverRootPath}/${appName}_web/` + item.outdir,
+          indexHtml,
+          copyFiles: [],
+        },
+        isDev,
+        [entryPoint],
+        path.dirname(entryPoint)
+      );
+      additionalFiles.push(indexHtml);
+    });
 
     if (appCfg['entryPointApi']) {
       const entryPointApi = `${appDir}/${appCfg['entryPointApi']}`;

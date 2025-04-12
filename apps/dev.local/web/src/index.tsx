@@ -30,7 +30,7 @@ import { AdminItemEditPage } from './pages/admin-item-edit';
 import { UserHomePage } from './pages/user-home-page';
 import { UserPageFrame } from './frames/user-page-frame';
 import { AdminPageFrame } from './frames/admin-page-frame';
-import { devAdminPageRouter } from 'lupine.api/admin';
+// import { devAdminPageRouter } from 'lupine.api/admin';
 import { AdminUserPage } from './pages/admin-user';
 import { User1Page } from './pages/user1-page';
 import { Page1Page } from './pages/page1-page';
@@ -132,7 +132,7 @@ pageRouter.setFramePage({
   placeholderClassname: 'top-frame-placeholder',
 });
 
-pageRouter.use('/admin-dev', devAdminPageRouter);
+// pageRouter.use('/admin-dev', devAdminPageRouter);
 pageRouter.use('/admin', adminPageRouter);
 pageRouter.use('/user', userPageRouter);
 pageRouter.use('/frame1', frame1PageRouter);

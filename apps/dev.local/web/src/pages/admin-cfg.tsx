@@ -110,7 +110,7 @@ export const AdminCfgPage = async (props: PageProps) => {
     <div css={css} class='management-cfg-page-box'>
       <div class='row-box'>
         <button class='button-base' onClick={onSave}>
-          保存
+          Save
         </button>
       </div>
       <div class='row-box'>

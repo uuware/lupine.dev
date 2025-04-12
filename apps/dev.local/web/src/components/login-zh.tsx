@@ -83,38 +83,38 @@ export const LoginPage = async (props: PageProps) => {
   return (
     <div css={css} class='admin-login'>
       <div class='top-header'>
-        <div class='top-title'>Login</div>
+        <div class='top-title'>登陆</div>
       </div>
       <div class='top-content'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>Username:</div>
+            <div class='label'>用户名：</div>
             <div>
               <input class='input-base u-name' type='text' />
             </div>
           </div>
           <div class='row-box'>
-            <div class='label'>Password:</div>
+            <div class='label'>密码：</div>
             <div>
               <input class='input-base u-pass' type='password' />
             </div>
           </div>
           <div class='row-box login-button'>
             <button onClick={() => onLogin()} class='button-base'>
-              Login
+              登录
             </button>
           </div>
-          <div class='row-box login-tip'>* Login System</div>
+          <div class='row-box login-tip'>* 登录系统</div>
           <div class='row-box login-tip'>
-            * No account? <a href='/register'>Go to register</a> or <a href='/'>Home</a>
+            * 还没有账户？<a href='/register'>去注册</a>或者<a href='/'>首页</a>
           </div>
           <div class='row-box login-tip'>
-            * Forgot password? <a href='/reset-pw'>Reset password</a>
+            * 忘记了密码？<a href='/reset-pw'>重新设置密码</a>
           </div>
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>Sample</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2024 <a href='/'>揉揉酱</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );
