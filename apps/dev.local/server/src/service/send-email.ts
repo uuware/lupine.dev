@@ -1,11 +1,12 @@
 import NodeMailer from 'nodemailer';
-import { Logger, AppConfig } from 'lupine.api';
+import { Logger } from 'lupine.api';
+import { apiStorage } from 'lupine.api';
 
 const logger = new Logger('email-api');
 // this should be called from a request handler
 export const sendSiteEmail = async (subject: string, body: string) => {
-  const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
-  const siteEmail = currentSettings['siteEmail'] || '';
+  // const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
+  const siteEmail = await apiStorage.getWeb('siteEmail') || '';
   if (!siteEmail) {
     logger.error('Site email not set');
     return;

@@ -1,6 +1,7 @@
 import { ServerResponse } from 'http';
-import { deepMerge, Logger, AppConfig, ServerRequest, ApiHelper, langHelper } from 'lupine.api';
+import { ServerRequest, ApiHelper, langHelper } from 'lupine.api';
 import { getUserFromCookie } from './user-api';
+import { apiStorage } from 'lupine.api';
 
 // const logger = new Logger('cfg-api');
 
@@ -17,10 +18,14 @@ export const readSetting = async (req: ServerRequest, res: ServerResponse) => {
   }
 
   // overwrite all webSettings
-  const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
-  const newSettings = deepMerge(currentSettings, data);
-  AppConfig.set(AppConfig.WEB_SETTINGS_KEY, newSettings);
-  AppConfig.save();
+  // const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
+  // const newSettings = deepMerge(currentSettings, data);
+  // AppConfig.set(AppConfig.WEB_SETTINGS_KEY, newSettings);
+  // AppConfig.save();
+  for (const key in data) {
+    await apiStorage.setWeb(key, data[key]);
+  }
+  await apiStorage.save();
 
   const response = {
     status: 'ok',
@@ -43,10 +48,14 @@ export const writeSetting = async (req: ServerRequest, res: ServerResponse) => {
   }
 
   // overwrite all webSettings
-  const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
-  const newSettings = deepMerge(currentSettings, data);
-  AppConfig.set(AppConfig.WEB_SETTINGS_KEY, newSettings);
-  AppConfig.save();
+  // const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
+  // const newSettings = deepMerge(currentSettings, data);
+  // AppConfig.set(AppConfig.WEB_SETTINGS_KEY, newSettings);
+  // AppConfig.save();
+  for (const key in data) {
+    await apiStorage.setWeb(key, data[key]);
+  }
+  await apiStorage.save();
 
   const response = {
     status: 'ok',

@@ -63,7 +63,7 @@ export const UserPageFrame = async (placeholderClassname: string, vnode: VNode<a
   );
   return (
     <div css={cssContainer}>
-      <Header title={webSetting('title', 'lupine.dev')} subtitle=''></Header>
+      <Header title={webSetting('siteTitle', 'lupine.dev')} subtitle=''></Header>
       {menuDom.node}
       <div class={'content-block ' + placeholderClassname}>{vnode}</div>
       <div class='top-link-list'>

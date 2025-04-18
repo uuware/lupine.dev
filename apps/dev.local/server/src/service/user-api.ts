@@ -4,11 +4,11 @@ import {
   CryptoUtils,
   Logger,
   apiCache,
-  AppConfig,
   ServerRequest,
   ApiHelper,
   JsonKeyValue,
   langHelper,
+  apiStorage,
 } from 'lupine.api';
 import { sendEmail, sendSiteEmail } from './send-email';
 
@@ -449,8 +449,9 @@ export const userReg = async (req: ServerRequest, res: ServerResponse) => {
     return true;
   }
 
-  const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
-  const siteUrl = currentSettings['siteUrl'] || 'https://your-site.com';
+  // const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
+  // const siteUrl = currentSettings['siteUrl'] || 'https://your-site.com';
+  const siteUrl = (await apiStorage.getWeb('siteUrl')) || 'https://your-site.com';
 
   const regEmailTitle = 'activate your account';
   const body = `Please click the link to activate your account: ${siteUrl}/api/user-activate?u=${data.u}&a=${random}`;

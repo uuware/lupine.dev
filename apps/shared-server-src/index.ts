@@ -45,7 +45,7 @@ const initAndStartServer = async () => {
   const sslCrtPath = process.env[ServerEnvKeys.SSL_CRT_PATH] || '';
 
   // Can't use log until initApp is called (after AppStart.start)
-  appStart.start({
+  await appStart.start({
     renderPageFunctions: getRenderPageFunctions(),
     debug: process.env[ServerEnvKeys.NODE_ENV] === 'development',
     apiConfig: {

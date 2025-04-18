@@ -114,8 +114,8 @@ export const AdminCfgPage = async (props: PageProps) => {
         </button>
       </div>
       <div class='row-box'>
-        <label class='m-label'>Page Title:</label>{' '}
-        <input type='text' class='input-base m-text f-title' value={webSetting('title', '(not set)')} />
+        <label class='m-label'>Site Title:</label>{' '}
+        <input type='text' class='input-base m-text f-title' value={webSetting('siteTitle', '(not set)')} />
       </div>
       <div class='row-box'>
         <label class='m-label'>Logo:</label>{' '}
