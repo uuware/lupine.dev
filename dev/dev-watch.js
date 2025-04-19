@@ -66,7 +66,15 @@ const watchServer = async (isDev, npmCmd, httpPort, serverRootPath) => {
 
 const copyCache = new Map();
 const clientProcessOnEnd = async (saved) => {
-  saved.indexHtml && cpIndexHtml(saved.indexHtml, path.join(saved.outdir, 'index.html'), saved.appName);
+  saved.indexHtml &&
+    cpIndexHtml(
+      saved.indexHtml,
+      path.join(saved.outdir, 'index.html'),
+      saved.appName,
+      saved.isMobile,
+      saved.defaultThemeName,
+      saved.outdirData,
+    );
 
   const assets = saved['copyFiles'];
   if (assets) {
@@ -193,6 +201,7 @@ const start = async () => {
   // command to start the server when source files are changed
   const npmCmd = process.argv.find((i) => i.startsWith('--cmd='))?.substring(6);
   const isDev = process.argv.find((i) => i === '--dev=1');
+  const isMobile = process.argv.find((i) => i === '--mobile=1');
 
   // All apps should be defined in .env file like this:
   // APPS=domain1.com,domain2.com
@@ -214,11 +223,14 @@ const start = async () => {
 
     const saved = {
       isDev,
+      isMobile,
+      defaultThemeName: 'light',
       appName,
       httpPort,
       serverRoot: serverRootPath,
       outdir: `${serverRootPath}/${appName}_web`,
       outdirApi: `${serverRootPath}/${appName}_api`,
+      outdirData: `${serverRootPath}/${appName}_data`,
       copyFiles: appCfg['copyFiles'].map((item) => ({
         from: `${appDir}/${item.from}`,
         to:

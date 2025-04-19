@@ -14,7 +14,8 @@
   ],
   "scripts": {
     "dev": "node ./dev/dev-watch --env=.env.development --dev=1 --cmd=start-dev",
-    "build": "node ./dev/dev-watch --env=.env.production --dev=0 --cmd=start-dev",
+    "build": "node ./dev/dev-watch --env=.env.production --dev=0",
+    "build-mobile": "node ./dev/dev-watch --env=.env.mobile --dev=0 --mobile=1",
     "start-dev": "node dist/server_root/server/index.js --env=.env.development",
     "start-production": "node dist/server_root/server/index.js --env=.env.production",
     "start-production-watch": "node --watch dist/server_root/server/index.js --env=.env.production",

@@ -1,6 +1,6 @@
 {
-  "WEB:pageLimit": "15",
-  "WEB:siteTitle": "Sample title",
-  "WEB:siteEmail": "sample@sample.com",
-  "WEB:siteUrl": "https://sample.com"
+  "WEB.pageLimit": "15",
+  "WEB.siteTitle": "Sample title",
+  "WEB.siteEmail": "sample@sample.com",
+  "WEB.siteUrl": "https://sample.com"
 }
