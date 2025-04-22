@@ -201,7 +201,7 @@ const start = async () => {
   // command to start the server when source files are changed
   const npmCmd = process.argv.find((i) => i.startsWith('--cmd='))?.substring(6);
   const isDev = process.argv.find((i) => i === '--dev=1');
-  const isMobile = process.argv.find((i) => i === '--mobile=1');
+  const isMobile = process.argv.find((i) => i === '--mobile=1'); // when this changed, need to rebuild index.html
 
   // All apps should be defined in .env file like this:
   // APPS=domain1.com,domain2.com

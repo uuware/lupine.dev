@@ -1665,6 +1665,10 @@ h6,
   flex-direction: column;
 }
 
+.f-row {
+  flex-direction: row;
+}
+
 /* .f-wrap {
   flex-wrap: wrap
 }

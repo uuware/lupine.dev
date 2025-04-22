@@ -39,6 +39,7 @@ const initAndStartServer = async () => {
   }
 
   const bindIp = process.env[ServerEnvKeys.BIND_IP] || '::';
+  // 0 to disable http/https server
   const httpPort = Number.parseInt(process.env[ServerEnvKeys.HTTP_PORT] || '8080');
   const httpsPort = Number.parseInt(process.env[ServerEnvKeys.HTTPS_PORT] || '8443');
   const sslKeyPath = process.env[ServerEnvKeys.SSL_KEY_PATH] || '';
