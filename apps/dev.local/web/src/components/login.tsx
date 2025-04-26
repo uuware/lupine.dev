@@ -5,9 +5,10 @@ import {
   getRenderPageProps,
   NotificationColor,
   NotificationMessage,
+  initializePage,
 } from 'lupine.js';
 import { Footer } from './footer';
-import { tokenCookieName, userCookieName } from '../models';
+import { setCookieUser } from '../services/shared-data';
 
 const fetchLogin = async (username: string, password: string) => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/login', { u: username, p: password });
@@ -72,9 +73,8 @@ export const LoginPage = async (props: PageProps) => {
     const auth = await fetchLogin(username, password);
     // console.log('====auth', auth);
     if (auth.result) {
-      DomUtils.setCookie(tokenCookieName, auth.result, 90, '/');
-      DomUtils.setCookie(userCookieName, JSON.stringify(auth.user || {}), 90, '/');
-      window.location.href = '/';
+      setCookieUser(auth.user || {});
+      initializePage('/');
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }

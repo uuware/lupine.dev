@@ -3,6 +3,8 @@ import { OneLangProps } from 'lupine.api';
 export const apiLangZhCn: OneLangProps = {
   langName: 'zh-cn',
   langs: {
+    'shared:process_completed': '处理完成',
+    'shared:process_failed': '处理失败',
     'shared:wrong_parameters': '错误的参数',
     'shared:record_not_found': '记录未找到',
     'shared:record_not_updated': '记录未更新',

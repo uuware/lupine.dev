@@ -9,6 +9,7 @@ import {
   ThemeSelector,
 } from 'lupine.js';
 import { getCookieUser } from '../services/shared-data';
+import { userCookieName } from '../models';
 
 export type UserInfoType = {
   id: number;
@@ -38,8 +39,10 @@ export const UserInfo = (props?: any) => {
   };
 
   const onLogout = async () => {
-    DomUtils.clearCookie('_token', '/');
-    DomUtils.clearCookie('_user', '/');
+    // DomUtils.clearCookie(tokenCookieName, '/');
+    DomUtils.clearCookie(userCookieName, '/');
+    // call server to clear cookie
+    await getRenderPageProps().renderPageFunctions.fetchData('/api/logout');
     window.location.href = '/';
   };
   const dom = HtmlVar('');

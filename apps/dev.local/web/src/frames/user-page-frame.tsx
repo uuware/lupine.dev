@@ -2,15 +2,15 @@ import {
   MenuBar,
   LinkList,
   MediaQueryMaxWidth,
-  HtmlVar,
   webSetting,
-  webEnv,
   VNode,
   CssProps,
+  MediaQueryRange,
 } from 'lupine.js';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { getCookieUser } from '../services/shared-data';
+import { FooterMenu } from '../components/footer-menu';
 
 const defaultTopMenu = [
   { text: 'Home', url: '/' },
@@ -54,25 +54,32 @@ export const UserPageFrame = async (placeholderClassname: string, vnode: VNode<a
     '.top-link-list, .top-footer': {
       paddingTop: '16px',
     },
+    [MediaQueryRange.TabletBelow]: {
+      '.header-box, .top-link-list, .top-footer .footer-box, .menu-bar-box': {
+        display: 'none',
+      },
+      '.content-block' : {
+        paddingBottom: '16px',
+      },
+      '.metronome-page-box, .gauge-box': {
+        boxShadow: '#313131 2.02px 2.02px 5.08px 1px !important',
+      },
+    },
   };
 
   const userCookie = getCookieUser();
   const actualMenu = !userCookie || !userCookie.u ? defaultTopMenu : defaultTopMenuUser;
-  const menuDom = HtmlVar(
-    <MenuBar items={actualMenu} maxWidthMobileMenu={'800px'} maxWidth={MediaQueryMaxWidth.DesktopMax}></MenuBar>
-  );
   return (
     <div css={cssContainer}>
       <Header title={webSetting('siteTitle', 'lupine.dev')} subtitle=''></Header>
-      {menuDom.node}
+      <MenuBar items={actualMenu} maxWidthMobileMenu={'800px'} maxWidth={MediaQueryMaxWidth.DesktopMax}></MenuBar>
       <div class={'content-block ' + placeholderClassname}>{vnode}</div>
       <div class='top-link-list'>
         <LinkList items={actualMenu} title=''></LinkList>
       </div>
       <div class='top-footer'>
-        <Footer
-          title={webSetting('footer', `Copyright© 2024 <a href='/'>lupine.dev</a>. All Rights Reserved.`)}
-        ></Footer>
+        <Footer title={webSetting('footer', `Copyright© 2024 <a href='/'>lupine.dev</a>. All Rights Reserved.`)}></Footer>
+        <FooterMenu></FooterMenu>
       </div>
     </div>
   );

@@ -3,6 +3,8 @@ import { OneLangProps } from 'lupine.api';
 export const apiLangEn: OneLangProps = {
   langName: 'en',
   langs: {
+    'shared:process_completed': 'Process completed',
+    'shared:process_failed': 'Process failed',
     'shared:wrong_parameters': 'Wrong parameters.',
     'shared:record_not_found': 'Record not found.',
     'shared:record_not_updated': 'Record not updated.',

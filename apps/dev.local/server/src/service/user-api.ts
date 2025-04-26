@@ -261,16 +261,21 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
       t: 'admin',
       h: specialToken,
     };
+
     const token = JSON.stringify(loginJson);
+    const tokenCookie = CryptoUtils.encrypt(token, cryptoKey);
     const response = {
       status: 'ok',
       message: langHelper.getLang('shared:login_success'),
-      result: CryptoUtils.encrypt(token, cryptoKey),
+      result: tokenCookie,
       user: {
         u: loginJson.u,
         t: loginJson.t,
       },
     };
+
+    // TODO: set secure and httpOnly to true and sameSite='strict' in production
+    req.locals.setCookie('_token', tokenCookie, { expireDays: 360, path: '/', httpOnly: false, secure: false });
     ApiHelper.sendJson(req, res, response);
     return true;
   }
@@ -350,16 +355,19 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
       t: result[0].usertype,
       h: nameAndPassHash,
     };
+
     const token = JSON.stringify(loginJson);
+    const tokenCookie = CryptoUtils.encrypt(token, cryptoKey);
     const response = {
       status: 'ok',
       message: langHelper.getLang('shared:login_success'),
-      result: CryptoUtils.encrypt(token, cryptoKey),
+      result: tokenCookie,
       user: {
         u: loginJson.u,
         t: loginJson.t,
       },
     };
+    req.locals.setCookie('_token', tokenCookie, { expireDays: 360, path: '/', httpOnly: false, secure: false });
     ApiHelper.sendJson(req, res, response);
     return true;
   }

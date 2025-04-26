@@ -34,7 +34,7 @@ const PageContent = ({ user }: { user: UserInfoType }) => {
       width: '200px',
     },
     '.m-text': {
-      width: '400px',
+      // width: '400px',
       marginBottom: '10px',
     },
     'textarea.m-text': {

@@ -72,8 +72,9 @@ export const LoginPage = async (props: PageProps) => {
     const auth = await fetchLogin(username, password);
     // console.log('====auth', auth);
     if (auth.result) {
-      DomUtils.setCookie(tokenCookieName, auth.result, 90, '/');
+      // DomUtils.setCookie(tokenCookieName, auth.result, 90, '/');
       DomUtils.setCookie(userCookieName, JSON.stringify(auth.user || {}), 90, '/');
+      // localStorage.setItem(userCookieName, JSON.stringify(auth.user || {}));
       window.location.href = '/';
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);

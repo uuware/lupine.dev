@@ -39,6 +39,8 @@ import { Frame1PageFrame } from './frames/frame1-page-frame';
 import { Page2Page } from './pages/page2-page';
 import { Frame2PageFrame } from './frames/frame2-page-frame';
 import { ContactPage } from './pages/contact';
+import { UserMinePage } from './pages/user-mine-page';
+import { UserFavoritePage } from './pages/user-favorite-page';
 
 if (typeof window !== 'undefined' && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
   debugWatch(webEnv(ClientEnvKeys.API_PORT, 0));
@@ -79,7 +81,7 @@ export const checkAuth = async (props: PageProps) => {
   const json = await fetchAuth(props);
   console.log('======auth', json);
   if (!json || !json.results) {
-    return Redirect({ url: '/' });
+    return Redirect({ url: '/login' });
   }
   return null;
 };
@@ -101,6 +103,8 @@ userPageRouter.setFramePage({
   placeholderClassname: 'user-page-placeholder',
 });
 // user, auth
+userPageRouter.use('/mine', checkAuth, UserMinePage);
+userPageRouter.use('/favorite', checkAuth, UserFavoritePage);
 userPageRouter.use('/profile', checkAuth, UserProfilePage);
 userPageRouter.use('/contact', checkAuth, ContactPage);
 userPageRouter.use('/user1/:parameter1/?option1/', User1Page);

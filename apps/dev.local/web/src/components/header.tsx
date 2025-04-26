@@ -56,7 +56,7 @@ export const Header = (props: { title: string; subtitle?: string }) => {
     },
   };
   return (
-    <div css={css}>
+    <div css={css} class='header-box'>
       <div class='header-user'>
         <UserInfo />
       </div>
