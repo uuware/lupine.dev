@@ -2,28 +2,29 @@ import {
   CssProps,
   PageProps,
   DomUtils,
-  HtmlVar,
   getRenderPageProps,
   NotificationColor,
   NotificationMessage,
+  initializePage,
+  RefProps,
 } from 'lupine.js';
 import { Footer } from './footer';
+import { setCookieUser } from '../services/shared-data';
+
+const fetchLogin = async (username: string, code: string) => {
+  const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/login', {
+    u: username,
+    c: code,
+  });
+  return data.json;
+};
 
 const fetchCode = async (username: string) => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/reset-code', { u: username });
   return data.json;
 };
 
-const fetchReset = async (username: string, password: string, authCode: string) => {
-  const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/reset-pw', {
-    u: username,
-    p: password,
-    a: authCode,
-  });
-  return data.json;
-};
-
-export const ResetPasswordPage = async (props: PageProps) => {
+export const LoginCodePage = async (props: PageProps) => {
   const css: CssProps = {
     display: 'flex',
     flexDirection: 'column',
@@ -71,6 +72,7 @@ export const ResetPasswordPage = async (props: PageProps) => {
     },
   };
 
+
   const onCode = async () => {
     const codeButton = DomUtils.bySelector('.code-button') as HTMLButtonElement;
     if (codeButton.classList.contains('disabled')) {
@@ -79,14 +81,14 @@ export const ResetPasswordPage = async (props: PageProps) => {
 
     const username = DomUtils.getValue('.u-name')!;
     if (!username) {
-      NotificationMessage.sendMessage('Please input username (Email)', NotificationColor.Error);
+      NotificationMessage.sendMessage('请输入用户名（邮箱）', NotificationColor.Error);
       return;
     }
 
     const auth = await fetchCode(username);
     if (auth.status === 'ok') {
       NotificationMessage.sendMessage(
-        'Authentication code is sent to your email, please copy it and paste it here.',
+        '验证码已发送到您的邮箱，请复制到这里登录。',
         NotificationColor.Success
       );
 
@@ -98,81 +100,72 @@ export const ResetPasswordPage = async (props: PageProps) => {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }
   };
-  const onReset = async () => {
-    const username = DomUtils.getValue('.u-name')!;
-    const password = DomUtils.getValue('.u-pass')!;
-    const password2 = DomUtils.getValue('.u-pass2')!;
-    const authCode = DomUtils.getValue('.u-code')!;
-    if (!username || !password || !password2 || !authCode) {
-      NotificationMessage.sendMessage(
-        'Please input username, password and authentication code',
-        NotificationColor.Error
-      );
+
+  const onLogin = async () => {
+    const codeDom = DomUtils.bySelector('.u-code') as HTMLInputElement;
+    const userDom = DomUtils.bySelector('.u-name') as HTMLInputElement;
+    const username = userDom.value;
+    const code = codeDom.value;
+    if (!username || !code) {
+      NotificationMessage.sendMessage('请输入用户名和验证码', NotificationColor.Error);
       return;
     }
-    if (password !== password2) {
-      NotificationMessage.sendMessage('The two passwords do not match', NotificationColor.Error);
+    const auth = await fetchLogin(username, code);
+    // console.log('====auth', auth);
+    if (auth.status === 'error') {
+      NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
       return;
     }
-    if (password.length < 6) {
-      NotificationMessage.sendMessage('Password length must be at least 6 characters', NotificationColor.Error);
-      return;
-    }
-    const auth = await fetchReset(username, password, authCode);
-    if (auth.status === 'ok') {
-      NotificationMessage.sendMessage('Your password is reset, please go to Login page', NotificationColor.Success);
+
+    if (auth.result) {
+      setCookieUser(auth.user || {});
+      initializePage('/');
+      // window.location.href = '/';
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }
   };
 
+  const ref: RefProps = {
+    onLoad: async () => {
+      const email = props.query['email'] || '';
+      DomUtils.setValue('.u-name', email);
+    },
+  };
   return (
-    <div css={css} class='admin-login'>
+    <div css={css} class='admin-login' ref={ref}>
       <div class='top-header'>
-        <div class='top-title'>Reset Password</div>
+        <div class='top-title'>登录</div>
       </div>
       <div class='top-content login-form-width'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>Username (Email):</div>
-            <div>
-              <input class='input-base u-name' type='text' />
-            </div>
+            <div class='label'>用户名（邮箱）:</div>
+            <input class='input-base u-name' type='text' />
           </div>
           <div class='row-box'>
-            <button onClick={() => onCode()} class='button-base code-button'>
-              Send Authentication Code
+            <button onClick={() => onCode()} class='button-base button-s code-button'>
+              发送验证码
             </button>
           </div>
           <div class='row-box'>
-            <div class='label'>Authentication Code:</div>
+            <div class='label'>验证码:</div>
             <div>
               <input class='input-base u-code' type='text' />
             </div>
           </div>
-          <div class='row-box'>
-            <div class='label'>New Password:</div>
-            <div>
-              <input class='input-base u-pass' type='password' />
-            </div>
-          </div>
-          <div class='row-box'>
-            <div class='label'>Confirm Password:</div>
-            <div>
-              <input class='input-base u-pass2' type='password' />
-            </div>
-          </div>
           <div class='row-box login-button'>
-            <button onClick={() => onReset()} class='button-base'>
-              Reset Password
+            <button onClick={() => onLogin()} class='button-base'>
+              登录
             </button>
           </div>
+          <div class='row-box login-tip'>* 登录以使用此系统。</div>
           <div class='row-box login-tip'>
-            * Login with your password?
-            <a href='/login' class='pr-m'>
-              Go to Login
-            </a>{' '}
-            or <a href='/'>Home</a>
+            * 没有账号？
+            <a href='/register' class='pr-m'>注册</a> or <a href='/'>首页</a>
+          </div>
+          <div class='row-box login-tip'>
+            * 使用密码登录？<a href='/login'>使用密码登录</a>
           </div>
         </div>
       </div>

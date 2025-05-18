@@ -22,6 +22,7 @@ export const apiLangEn: OneLangProps = {
     'shared:user_not_activated': 'Account not activated.',
     'shared:wrong_email_format': 'Wrong email format.',
     'shared:register_failed': 'Register failed, please contact administrator.',
+    'shared:register_success': 'You have successfully registered. Please login to your account.',
     'shared:send_email_notification': 'Email notification sent.',
     'shared:updated_profile': 'Profile updated.',
     'shared:password_length_wrong': 'Password length is wrong, must be at least {len} characters.',
@@ -29,8 +30,8 @@ export const apiLangEn: OneLangProps = {
     'shared:login_failed_too_many_times': 'Login failed too many times, please wait {minutes} minutes to retry.',
     'shared:register_username_exists':
       'This username already exists, please input a new email or reset your current account password.',
-    'shared:send_email_activation': 'Activation code sent to your email.',
-    'shared:send_and_copy_activation': 'Activation code sent to your email, please copy it to reset your password.',
+    // 'shared:send_email_activation': 'Activation code sent to your email.',
+    'shared:send_and_copy_activation': 'An Email has been sent to you with the authentication code. Please copy that authentication code to login or reset your password.',
     'shared:wrong_activation': 'Wrong activation code.',
     'shared:password_reset_success': 'Password reset successfully, please login.',
   },

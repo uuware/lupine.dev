@@ -4,7 +4,7 @@ import {
   HostToPathProps,
   appStart,
   bindRenderPageFunctions,
-  defaultDbConfig,
+  getDefaultDbConfig,
   getRenderPageFunctions,
   loadEnv,
 } from 'lupine.api';
@@ -17,7 +17,7 @@ const initAndStartServer = async () => {
   await loadEnv(envFile);
   bindRenderPageFunctions({ fetchData });
 
-  const dbConfig = { ...defaultDbConfig };
+  const dbConfig = { ...getDefaultDbConfig() };
   const serverRootPath = path.resolve(process.env[ServerEnvKeys.SERVER_ROOT_PATH]!);
   const apps = (process.env[ServerEnvKeys.APPS] || '').split(',');
   const webRootMap: HostToPathProps[] = [];

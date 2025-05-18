@@ -41,6 +41,7 @@ import { Frame2PageFrame } from './frames/frame2-page-frame';
 import { ContactPage } from './pages/contact';
 import { UserMinePage } from './pages/user-mine-page';
 import { UserFavoritePage } from './pages/user-favorite-page';
+import { LoginCodePage } from './components/login-code';
 
 if (typeof window !== 'undefined' && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
   debugWatch(webEnv(ClientEnvKeys.API_PORT, 0));
@@ -143,6 +144,7 @@ pageRouter.use('/frame1', frame1PageRouter);
 pageRouter.use('/frame2', frame2PageRouter);
 
 pageRouter.use('/login', LoginPage);
+pageRouter.use('/login-code', LoginCodePage);
 pageRouter.use('/register', RegisterPage);
 pageRouter.use('/reset-pw', ResetPasswordPage);
 

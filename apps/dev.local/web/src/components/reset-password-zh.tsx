@@ -56,7 +56,7 @@ export const ResetPasswordPage = async (props: PageProps) => {
         fontSize: '90%',
       },
       '.login-tip a': {
-        padding: '0 10px',
+        paddingLeft: '10px',
       },
       '.label': {
         width: '200px',
@@ -72,6 +72,11 @@ export const ResetPasswordPage = async (props: PageProps) => {
   };
 
   const onCode = async () => {
+    const codeButton = DomUtils.bySelector('.code-button') as HTMLButtonElement;
+    if (codeButton.classList.contains('disabled')) {
+      return;
+    }
+
     const username = DomUtils.getValue('.u-name')!;
     if (!username) {
       NotificationMessage.sendMessage('请输入用户名', NotificationColor.Error);
@@ -81,13 +86,15 @@ export const ResetPasswordPage = async (props: PageProps) => {
     if (auth.status === 'ok') {
       NotificationMessage.sendMessage('验证码已发送到您的邮箱，请复制并粘贴到此处', NotificationColor.Success);
 
-      // const loginButton = DomUtils.bySelector('.login-button button') as HTMLButtonElement;
-      // loginButton.disabled = false;
+      codeButton.classList.add('disabled');
+      setTimeout(() => {
+        codeButton.classList.remove('disabled');
+      }, 60000);
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }
   };
-  const onLogin = async () => {
+  const onReset = async () => {
     const username = DomUtils.getValue('.u-name')!;
     const password = DomUtils.getValue('.u-pass')!;
     const password2 = DomUtils.getValue('.u-pass2')!;
@@ -117,7 +124,7 @@ export const ResetPasswordPage = async (props: PageProps) => {
       <div class='top-header'>
         <div class='top-title'>重置密码</div>
       </div>
-      <div class='top-content'>
+      <div class='top-content login-form-width'>
         <div class='top-content-box'>
           <div class='row-box'>
             <div class='label'>用户名 (邮箱):</div>
@@ -149,7 +156,7 @@ export const ResetPasswordPage = async (props: PageProps) => {
             </div>
           </div>
           <div class='row-box login-button'>
-            <button onClick={() => onLogin()} class='button-base'>
+            <button onClick={() => onReset()} class='button-base'>
               重置密码
             </button>
           </div>
@@ -159,7 +166,7 @@ export const ResetPasswordPage = async (props: PageProps) => {
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>GFF.com</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2025 <a href='/'>Home</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );

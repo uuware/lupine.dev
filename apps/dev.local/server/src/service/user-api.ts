@@ -225,7 +225,7 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
   // TODO: secure and httpOnly cookies
   // when login without username and password, use cookie info
   const data = req.locals.json();
-  if (!data || Array.isArray(data) || !data.u || !data.p) {
+  if (!data || Array.isArray(data) || !data.u || (!data.p && !data.c)) {
     const cookies = req.locals.cookies();
     const token = cookies.get('_token', '');
     if (token) {
@@ -274,41 +274,73 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
       },
     };
 
-    // TODO: set secure and httpOnly to true and sameSite='strict' in production
-    req.locals.setCookie('_token', tokenCookie, { expireDays: 360, path: '/', httpOnly: false, secure: false });
+    // sameSite: 'none' needs secure=true
+    req.locals.setCookie('_token', tokenCookie, {
+      expireDays: 360,
+      path: '/',
+      httpOnly: false,
+      secure: true,
+      sameSite: 'none',
+    });
     ApiHelper.sendJson(req, res, response);
     return true;
   }
 
   const result = await db.selectObject(
     '$__s_user',
-    ['id', 'username', 'password', 'level', 'usertype', 'pwretry', 'activation', 'lastvisitdate', 'block'],
+    ['id', 'username', 'password', 'level', 'usertype', 'pwretry', 'activation', 'activated', 'lastvisitdate', 'block'],
     { username: data.u as string }
   );
   if (result && result.length === 1 && result[0].username === data.u) {
-    if (result[0].activation) {
-      const response = {
-        status: 'error',
-        message: langHelper.getLang('shared:user_not_activated'),
-      };
-      ApiHelper.sendJson(req, res, response);
-      return true;
-    }
     if (result[0].block === '1') {
       const response = {
         status: 'error',
+        action: 'block',
         message: langHelper.getLang('shared:user_locked'),
       };
       ApiHelper.sendJson(req, res, response);
       return true;
     }
 
+    let loginOk = false;
+    if (result[0].activated !== '1') {
+      if (!data.c) {
+        const response = {
+          status: 'error',
+          action: 'activate',
+          message: langHelper.getLang('shared:user_not_activated'),
+        };
+        ApiHelper.sendJson(req, res, response);
+        return true;
+      }
+      if (result[0].activation.length < 6 || result[0].activation !== data.c) {
+        const response = {
+          status: 'error',
+          message: langHelper.getLang('shared:wrong_activation'),
+        };
+        ApiHelper.sendJson(req, res, response);
+        return true;
+      }
+      loginOk = true;
+    } else {
+      if (data.c && (result[0].activation.length < 6 || result[0].activation !== data.c)) {
+        const response = {
+          status: 'error',
+          message: langHelper.getLang('shared:wrong_activation'),
+        };
+        ApiHelper.sendJson(req, res, response);
+        return true;
+      }
+      loginOk = true;
+    }
+
     // if retries exceed, don't allow login
-    if (result[0].pwretry > PW_RETRY_MAX) {
+    if (!loginOk && result[0].pwretry > PW_RETRY_MAX) {
       const lastvisitdate = DateUtils.fromJSONString(result[0].lastvisitdate);
       if (lastvisitdate && Date.now() - lastvisitdate.getTime() < 1000 * 60 * PW_RETRY_RESET_MINUTES) {
         const response = {
           status: 'error',
+          action: 'pwretry',
           message: langHelper.getLang('shared:login_failed_too_many_times', {
             minutes: PW_RETRY_RESET_MINUTES,
           }),
@@ -325,7 +357,7 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
       );
     }
 
-    if (result[0].password !== CryptoUtils.hash(data.p as string)) {
+    if (!loginOk && result[0].password !== CryptoUtils.hash(data.p as string)) {
       await db.updateObject(
         '$__s_user',
         {
@@ -344,7 +376,7 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
 
     await db.updateObject(
       '$__s_user',
-      { pwretry: 0, lastvisitdate: DateUtils.toJSONString(new Date()) },
+      { pwretry: 0, activation: '', activated: '1', lastvisitdate: DateUtils.toJSONString(new Date()) },
       { username: data.u as string }
     );
     const nameAndPassHash = CryptoUtils.hash(((result[0].username as string) + ':' + result[0].password) as string);
@@ -367,7 +399,13 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
         t: loginJson.t,
       },
     };
-    req.locals.setCookie('_token', tokenCookie, { expireDays: 360, path: '/', httpOnly: false, secure: false });
+    req.locals.setCookie('_token', tokenCookie, {
+      expireDays: 360,
+      path: '/',
+      httpOnly: false,
+      secure: true,
+      sameSite: 'none',
+    });
     ApiHelper.sendJson(req, res, response);
     return true;
   }
@@ -377,6 +415,12 @@ export const userLogin = async (req: ServerRequest, res: ServerResponse) => {
     message: langHelper.getLang('shared:login_failed'),
   };
   ApiHelper.sendJson(req, res, response);
+  return true;
+};
+
+export const userLogout = async (req: ServerRequest, res: ServerResponse) => {
+  req.locals.setCookie('_token', '', { expireDays: 360, path: '/', httpOnly: false, secure: true, sameSite: 'none' });
+  ApiHelper.sendJson(req, res, { status: 'ok', message: 'Logged out.' });
   return true;
 };
 
@@ -436,7 +480,7 @@ export const userReg = async (req: ServerRequest, res: ServerResponse) => {
   }
 
   const lastvisitdate = DateUtils.toJSONString(new Date());
-  const random = CryptoUtils.randomString(16);
+  // const random = CryptoUtils.randomString(16);
   const result2 = await db.insertObject('$__s_user', {
     nickname: data.preferredName as string,
     username: data.u as string,
@@ -446,7 +490,8 @@ export const userReg = async (req: ServerRequest, res: ServerResponse) => {
     usertype: 'user',
     registerdate: lastvisitdate,
     lastvisitdate: lastvisitdate,
-    activation: random,
+    activated: '0', // '' or 0: not activated, 1: activated
+    activation: '',
   });
   if (!result2) {
     const response = {
@@ -459,50 +504,50 @@ export const userReg = async (req: ServerRequest, res: ServerResponse) => {
 
   // const currentSettings = AppConfig.get(AppConfig.WEB_SETTINGS_KEY);
   // const siteUrl = currentSettings['siteUrl'] || 'https://your-site.com';
-  const siteUrl = (await apiStorage.getWeb('siteUrl')) || 'https://your-site.com';
+  // const siteUrl = (await apiStorage.getWeb('siteUrl')) || 'https://your-site.com';
 
-  const regEmailTitle = 'activate your account';
-  const body = `Please click the link to activate your account: ${siteUrl}/api/user-activate?u=${data.u}&a=${random}`;
-  sendEmail(data.u as string, regEmailTitle, body);
+  // const regEmailTitle = 'activate your account';
+  // const body = `Please click the link to activate your account: ${siteUrl}/api/user-activate?u=${data.u}&a=${random}`;
+  // sendEmail(data.u as string, regEmailTitle, body);
   const response = {
     status: 'ok',
-    message: langHelper.getLang('shared:send_email_activation'),
+    message: langHelper.getLang('shared:register_success'),
   };
   ApiHelper.sendJson(req, res, response);
   return true;
 };
 
-// Response is HTML page
-export const userActivation = async (req: ServerRequest, res: ServerResponse) => {
-  const userEmail = req.locals.query.get('u');
-  const activation = req.locals.query.get('a');
-  if (!userEmail || !activation || activation.length !== 32) {
-    const response = 'Wrong data.';
-    ApiHelper.sendHtml(req, res, response);
-    return true;
-  }
+// // Response is HTML page
+// export const userActivation = async (req: ServerRequest, res: ServerResponse) => {
+//   const userEmail = req.locals.query.get('u');
+//   const activation = req.locals.query.get('a');
+//   if (!userEmail || !activation || activation.length !== 32) {
+//     const response = 'Wrong data.';
+//     ApiHelper.sendHtml(req, res, response);
+//     return true;
+//   }
 
-  const db = apiCache.getDb();
-  const result = await db.selectObject('$__s_user', ['id', 'activation'], {
-    username: userEmail,
-  });
-  if (!result || result.length !== 1) {
-    const response = '<meta charset="utf-8" />Activation failed. User does not exist, please contact admin.';
-    ApiHelper.sendHtml(req, res, response);
-    return true;
-  }
+//   const db = apiCache.getDb();
+//   const result = await db.selectObject('$__s_user', ['id', 'activation'], {
+//     username: userEmail,
+//   });
+//   if (!result || result.length !== 1) {
+//     const response = '<meta charset="utf-8" />Activation failed. User does not exist, please contact admin.';
+//     ApiHelper.sendHtml(req, res, response);
+//     return true;
+//   }
 
-  if (result[0].activation !== activation) {
-    const response = '<meta charset="utf-8" />Activation failed. Activation code is incorrect, please contact admin.';
-    ApiHelper.sendHtml(req, res, response);
-    return true;
-  }
+//   if (result[0].activation !== activation) {
+//     const response = '<meta charset="utf-8" />Activation failed. Activation code is incorrect, please contact admin.';
+//     ApiHelper.sendHtml(req, res, response);
+//     return true;
+//   }
 
-  await db.updateObject('$__s_user', { activation: '' }, { username: userEmail });
-  const response = '<meta charset="utf-8" />Activation successful, please <a href="/login">login</a>.';
-  ApiHelper.sendHtml(req, res, response);
-  return true;
-};
+//   await db.updateObject('$__s_user', { activation: '' }, { username: userEmail });
+//   const response = '<meta charset="utf-8" />Activation successful, please <a href="/login">login</a>.';
+//   ApiHelper.sendHtml(req, res, response);
+//   return true;
+// };
 
 export const userResetCode = async (req: ServerRequest, res: ServerResponse) => {
   const json = req.locals.json() as JsonKeyValue;
@@ -530,11 +575,12 @@ export const userResetCode = async (req: ServerRequest, res: ServerResponse) => 
   }
 
   const lastvisitdate = DateUtils.toJSONString(new Date());
-  const random = CryptoUtils.randomString(16);
+  const random = CryptoUtils.randomNumberString(8);
   await db.updateObject('$__s_user', { activation: random, lastvisitdate: lastvisitdate }, { username: userEmail });
 
-  const emailTitle = 'reset password';
-  const body = `You are trying to reset your password. Please copy this authentication code to reset your password: ${random}`;
+  const siteUrl = (await apiStorage.getWeb('siteUrl')) || 'https://your-site.com';
+  const emailTitle = 'Authentication code';
+  const body = `This is the authentication code [${random}] for your account at ${siteUrl}. Please copy this Authentication code to login or reset your password.`;
   sendEmail(userEmail, emailTitle, body);
   const response = {
     status: 'ok',
@@ -617,8 +663,9 @@ export const updateUser = async (req: ServerRequest, res: ServerResponse) => {
   if (password) {
     updateObj['password'] = CryptoUtils.hash(password);
   }
-  // clear activation
+  // clear activation, only admin can update
   updateObj['activation'] = '';
+  updateObj['activated'] = '1';
   updateObj['pwretry'] = 0;
   const result = await db.updateObject('$__s_user', updateObj, { id: id });
   const response = {

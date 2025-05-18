@@ -1,4 +1,4 @@
-import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, MediaQueryRange, PageProps, RefProps, ToggleSwitch } from 'lupine.js';
+import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, RefProps } from 'lupine.js';
 
 export const User1Page = async () => {
   const css: CssProps = {
@@ -49,7 +49,7 @@ export const User1Page = async () => {
         <div class='sound-box'>{nodeTest1.node}</div>
         <div class='sound-box'>{nodeTest2.node}</div>
         <div class='toggle-box'>
-          <ToggleSwitch onChanged={onClickTuner} checked={false} />
+          Sample text
         </div>
       </div>
     </div>

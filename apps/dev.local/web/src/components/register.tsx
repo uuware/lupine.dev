@@ -1,4 +1,4 @@
-import { CssProps, PageProps, DomUtils, getRenderPageProps, NotificationColor, NotificationMessage } from 'lupine.js';
+import { CssProps, PageProps, DomUtils, getRenderPageProps, NotificationColor, NotificationMessage, webSetting } from 'lupine.js';
 import { Footer } from './footer';
 
 const fetchReg = async (body: any) => {
@@ -107,7 +107,7 @@ export const RegisterPage = async (props: PageProps) => {
       <div class='top-header'>
         <div class='top-title'>Register</div>
       </div>
-      <div class='top-content'>
+      <div class='top-content login-form-width'>
         <div class='top-content-box'>
           <div class='row-box'>
             <div class='label'>Username (Email)：</div>
@@ -115,6 +115,11 @@ export const RegisterPage = async (props: PageProps) => {
               <input class='input-base u-name' type='text' maxLength={50} />
             </div>
           </div>
+          {webSetting('verifyEmail', '1') === '1' && (
+            <div class='row-box login-tip'>
+              * Confirm you email carefully and your email is used to receive authentication code.
+            </div>
+          )}
           <div class='row-box'>
             <div class='label'>Password:</div>
             <div>
@@ -146,7 +151,7 @@ export const RegisterPage = async (props: PageProps) => {
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>Sample</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2025 <a href='/'>Home</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );

@@ -11,4 +11,7 @@ export const baseCss = {
     width: '100%',
     height: 'auto',
   },
+  '.login-form-width': {
+    width: '550px',
+  },
 };

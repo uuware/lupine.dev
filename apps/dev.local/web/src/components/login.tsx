@@ -31,9 +31,6 @@ export const LoginPage = async (props: PageProps) => {
       flex: '1',
       padding: '8px 16px',
       margin: 'auto',
-      // '.login-button, .login-tip': {
-      //   justifyContent: 'center',
-      // },
       '.top-content-box': {
         padding: '20px 40px',
         boxShadow: 'var(--cover-box-shadow)',
@@ -48,7 +45,7 @@ export const LoginPage = async (props: PageProps) => {
         fontSize: '90%',
       },
       '.login-tip a': {
-        padding: '0 10px',
+        paddingLeft: '10px',
       },
       '.label': {
         width: '200px',
@@ -72,6 +69,14 @@ export const LoginPage = async (props: PageProps) => {
     }
     const auth = await fetchLogin(username, password);
     // console.log('====auth', auth);
+    if (auth.status === 'error' && auth.action === 'activate') {
+      NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
+      setTimeout(() => {
+        initializePage('/login-code?email=' + username);
+      }, 1000);
+      return;
+    }
+
     if (auth.result) {
       setCookieUser(auth.user || {});
       initializePage('/');
@@ -85,36 +90,39 @@ export const LoginPage = async (props: PageProps) => {
       <div class='top-header'>
         <div class='top-title'>Login</div>
       </div>
-      <div class='top-content'>
+      <div class='top-content login-form-width'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>Username:</div>
-            <div>
-              <input class='input-base u-name' type='text' />
-            </div>
+            <div class='label'>Username (Email):</div>
+            <input class='input-base u-name' type='text' />
           </div>
           <div class='row-box'>
             <div class='label'>Password:</div>
-            <div>
-              <input class='input-base u-pass' type='password' />
-            </div>
+            <input class='input-base u-pass' type='password' />
           </div>
           <div class='row-box login-button'>
             <button onClick={() => onLogin()} class='button-base'>
               Login
             </button>
           </div>
-          <div class='row-box login-tip'>* Login System</div>
+          <div class='row-box login-tip'>* Login to use this system.</div>
           <div class='row-box login-tip'>
-            * No account? <a href='/register'>Go to register</a> or <a href='/'>Home</a>
+            * Don't have an account?
+            <a href='/register' class='pr-m'>
+              Go to Register
+            </a>{' '}
+            or <a href='/'>Home</a>
           </div>
           <div class='row-box login-tip'>
-            * Forgot password? <a href='/reset-pw'>Reset password</a>
+            * Forgot password?<a href='/reset-pw'>Reset Password</a>
+          </div>
+          <div class='row-box login-tip'>
+            * Passwordless login?<a href='/login-code'>Login with code</a>
           </div>
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>Sample</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2025 <a href='/'>Home</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );

@@ -8,7 +8,6 @@ import {
   getUserInfo,
   sendUserNote,
   updateProfile,
-  userActivation,
   userResetCode,
   userResetPw,
 } from './user-api';
@@ -51,7 +50,7 @@ export class Api implements IApiBase {
 
     this.router.use('/login', userLogin);
     this.router.use('/register', userReg);
-    this.router.use('/user-activate', userActivation);
+    // this.router.use('/user-activate', userActivation);
     this.router.use('/reset-code', userResetCode);
     this.router.use('/reset-pw', userResetPw);
   }

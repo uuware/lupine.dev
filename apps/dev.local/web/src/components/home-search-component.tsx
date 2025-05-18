@@ -1,4 +1,4 @@
-import { CssProps, HtmlVar, initializePage, RefProps } from 'lupine.js';
+import { CssProps, DragFresh, DragRefreshCloseProps, HtmlVar, initializePage, NotificationColor, NotificationMessage, RefProps } from 'lupine.js';
 import { StoryListComponent } from './story-list';
 import { StoryCardShortProps } from './story-props';
 
@@ -99,8 +99,14 @@ export const HomeSearchComponent = (props: SearchMusicProps) => {
   const onAdd = () => {
     initializePage('/management-new');
   };
+  const onDragRefresh = async (close: DragRefreshCloseProps) => {
+    NotificationMessage.sendMessage('Refreshing...', NotificationColor.Info);
+    await onSearch();
+    close();
+  };
   return (
     <div css={css} class='search-music-box' ref={ref}>
+      <DragFresh container='.search-music-box' onDragRefresh={onDragRefresh} />
       <div className='row-box search-box m-auto p-m w-100p'>
         <input class='input-base txt-search flex-1' type='text' placeholder='Please input keywords' />
         <button class='button-base btn-search' onClick={onSearch}>

@@ -5,9 +5,10 @@ import {
   getRenderPageProps,
   NotificationColor,
   NotificationMessage,
+  initializePage,
 } from 'lupine.js';
 import { Footer } from './footer';
-import { tokenCookieName, userCookieName } from '../models';
+import { setCookieUser } from '../services/shared-data';
 
 const fetchLogin = async (username: string, password: string) => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/login', { u: username, p: password });
@@ -30,9 +31,6 @@ export const LoginPage = async (props: PageProps) => {
       flex: '1',
       padding: '8px 16px',
       margin: 'auto',
-      // '.login-button, .login-tip': {
-      //   justifyContent: 'center',
-      // },
       '.top-content-box': {
         padding: '20px 40px',
         boxShadow: 'var(--cover-box-shadow)',
@@ -47,7 +45,7 @@ export const LoginPage = async (props: PageProps) => {
         fontSize: '90%',
       },
       '.login-tip a': {
-        padding: '0 10px',
+        paddingLeft: '10px',
       },
       '.label': {
         width: '200px',
@@ -71,11 +69,17 @@ export const LoginPage = async (props: PageProps) => {
     }
     const auth = await fetchLogin(username, password);
     // console.log('====auth', auth);
+    if (auth.status === 'error' && auth.action === 'activate') {
+      NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
+      setTimeout(() => {
+        initializePage('/login-code?email=' + username);
+      }, 1000);
+      return;
+    }
+
     if (auth.result) {
-      // DomUtils.setCookie(tokenCookieName, auth.result, 90, '/');
-      DomUtils.setCookie(userCookieName, JSON.stringify(auth.user || {}), 90, '/');
-      // localStorage.setItem(userCookieName, JSON.stringify(auth.user || {}));
-      window.location.href = '/';
+      setCookieUser(auth.user || {});
+      initializePage('/');
     } else {
       NotificationMessage.sendMessage(auth.message, NotificationColor.Error);
     }
@@ -86,19 +90,15 @@ export const LoginPage = async (props: PageProps) => {
       <div class='top-header'>
         <div class='top-title'>登陆</div>
       </div>
-      <div class='top-content'>
+      <div class='top-content login-form-width'>
         <div class='top-content-box'>
           <div class='row-box'>
-            <div class='label'>用户名：</div>
-            <div>
-              <input class='input-base u-name' type='text' />
-            </div>
+            <div class='label'>用户名 (Email)：</div>
+            <input class='input-base u-name' type='text' />
           </div>
           <div class='row-box'>
             <div class='label'>密码：</div>
-            <div>
-              <input class='input-base u-pass' type='password' />
-            </div>
+            <input class='input-base u-pass' type='password' />
           </div>
           <div class='row-box login-button'>
             <button onClick={() => onLogin()} class='button-base'>
@@ -112,10 +112,13 @@ export const LoginPage = async (props: PageProps) => {
           <div class='row-box login-tip'>
             * 忘记了密码？<a href='/reset-pw'>重新设置密码</a>
           </div>
+          <div class='row-box login-tip'>
+            * 无密码登录？<a href='/login-code'>用验证码登录</a>
+          </div>
         </div>
       </div>
       <div class='top-footer'>
-        <Footer title="Copyright© 2024 <a href='/'>揉揉酱</a>. All Rights Reserved."></Footer>
+        <Footer title="Copyright© 2025 <a href='/'>Home</a>. All Rights Reserved."></Footer>
       </div>
     </div>
   );
