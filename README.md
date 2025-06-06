@@ -7,11 +7,8 @@ Lupine.js is a full-featured web application that includes both frontend and bac
 1, clone this repo locally
 
 ```
-git clone https://github.com/uuware/lupine.dev.git
+git clone https://github.com/uuware/lupine.js.git
 ```
-
-And add packages (goto the `Add packages after clone this repo (first time only)` section)
-
 
 2, install dependencies
 
@@ -27,7 +24,7 @@ DEV_ADMIN_PASS=
 DEV_CRYPTO_KEY=
 ```
 
-## follow the link in .env file to set gamil account to send email (if you use email registration)
+## follow the link in .env file to set gmail account to send email (if you use email registration)
 ```
 SEND_EMAIL_USER=
 SEND_EMAIL_PASS=
@@ -104,25 +101,13 @@ export const UserInfo = (props?: any) => {
 ```
 
 
-# Add packages after clone this repo (first time only)
-
-## Nested repo in VS Code
-For VS Code to detect nested repo under packages, you need to open Preferences > Settings, search `Repository`, and under `Git: Repository Scan Max Depth`, set it to `2`.
-
-## Add lupine.web and lupine.api packages
-As VS Code is good to manage separate packages, so we don't use git subtree or submodule.
-Under packages folder, pull two packages (only once):
-```
-git clone https://github.com/uuware/lupine.web.git
-git clone https://github.com/uuware/lupine.api.git
-```
-
-Once it's cloned, you may need to make some changes to three `.git\config` files under the project's root folder and `packages` folder. So that you can commit your code with correct permission and username.
+# Add github access for commit
+Once it's cloned, you may need to make some changes to `.git\config` files under the project's root folder. So that you can commit your code with correct permission and username.
 ## 1, Find your github access token from [Developer Settings / Personal access tokens (classic)](https://github.com/settings/tokens)
 
 ```
 [remote "origin"]
-	url = https://<your-github-access-token>@github.com/uuware/lupine.dev.git
+	url = https://<your-github-access-token>@github.com/uuware/lupine.js.git
 
 [user]
 	name = uuware

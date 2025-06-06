@@ -1,0 +1,16 @@
+{
+  "name": "jsx-runtime",
+  "amdName": "jsxRuntime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "lupine.web JSX runtime",
+  "main": "index.js",
+  "module": "index.js",
+  "umd:main": "index.js",
+  "source": "index.js",
+  "types": "src/index.d.ts",
+  "license": "MIT",
+  "peerDependencies": {
+    "lupine.web": "^1.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "lupine.api-dev",
+  "version": "1.0.0",
+  "private": true,
+  "description": "dev tools for lupine.api",
+  "main": "index.js",
+  "module": "index.js",
+  "umd:main": "index.js",
+  "source": "index.js",
+  "types": "index.js",
+  "license": "MIT"
+}

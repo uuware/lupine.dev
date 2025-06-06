@@ -1,0 +1,51 @@
+{
+  "name": "lupine.web",
+  "version": "1.0.15",
+  "license": "MIT",
+  "author": "uuware.com",
+  "homepage": "https://uuware.com/",
+  "description": "lupine.web is a extremely fast, small size and lightweight frontend framework, using React TSX syntax.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uuware/lupine.web.git"
+  },
+  "main": "src/index.ts",
+  "source": "src/index.ts",
+  "types": "src/index.ts",
+  "engines": {
+    "node": ">= 20"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "browser": "./src/index.ts",
+      "umd": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    },
+    "./jsx-runtime": {
+      "types": "./jsx-runtime/src/index.d.ts",
+      "browser": "./jsx-runtime/index.js",
+      "umd": "./jsx-runtime/index.js",
+      "import": "./jsx-runtime/index.js",
+      "require": "./jsx-runtime/index.js"
+    }
+  },
+  "keywords": [
+    "frontend",
+    "responsive",
+    "lightweight",
+    "grid"
+  ],
+  "scripts": {
+    "note": "echo 'build is not needed as the typescript code is supposed to be referred directly from other projects'",
+    "npm-publish": "npm publish --access public",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "jsx-runtime": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5"
+  }
+}

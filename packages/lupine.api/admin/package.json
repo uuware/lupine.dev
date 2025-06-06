@@ -1,0 +1,15 @@
+{
+  "name": "admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "admin",
+  "main": "index.ts",
+  "module": "index.ts",
+  "umd:main": "index.ts",
+  "source": "index.ts",
+  "types": "index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "lupine.web": "^1.0.0"
+  }
+}
