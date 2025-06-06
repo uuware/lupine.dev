@@ -1,11 +1,9 @@
 import { bindGlobalStyles, getCurrentTheme, updateTheme } from '../core';
 import { CssProps } from '../jsx';
-import { ContentPosition } from '../types';
 import { PopupMenu } from './popup-menu';
 
 export type ThemeSelectorProps = {
   className?: string;
-  contentPosition?: ContentPosition;
   css?: CssProps;
 };
 
@@ -14,7 +12,6 @@ export const ThemeSelector = ({ className, css }: ThemeSelectorProps) => {
     display: 'flex',
     flexDirection: 'column',
     alignSelf: 'end',
-    // justifyContent: ContentPosition.center,
     ...css,
   };
 
