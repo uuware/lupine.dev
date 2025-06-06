@@ -23,7 +23,7 @@
     "emitDecoratorMetadata": true /* Emit design-type metadata for decorated declarations in source files. */,
     // "jsxFactory": "",                                 /* Specify the JSX factory function used when targeting React JSX emit, e.g. 'React.createElement' or 'h'. */
     // "jsxFragmentFactory": "",                         /* Specify the JSX Fragment reference used for fragments when targeting React JSX emit e.g. 'React.Fragment' or 'Fragment'. */
-    "jsxImportSource": "lupine.js" /* Specify module specifier used to import the JSX factory functions when using 'jsx: react-jsx*'. */,
+    "jsxImportSource": "lupine.web" /* Specify module specifier used to import the JSX factory functions when using 'jsx: react-jsx*'. */,
     // "reactNamespace": "",                             /* Specify the object invoked for 'createElement'. This only applies when targeting 'react' JSX emit. */
     // "noLib": true,                                    /* Disable including any library files, including the default lib.d.ts. */
     // "useDefineForClassFields": true,                  /* Emit ECMAScript-standard-compliant class fields. */
@@ -39,7 +39,7 @@
     // "rootDirs": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */
     // "typeRoots": [],                                  /* Specify multiple folders that act like './node_modules/@types'. */
     // "types": [],                                      /* Specify type package names to be included without being referenced in a source file. */
-    "types": ["node", "lupine.js"],
+    "types": ["node", "lupine.web"],
     // "allowUmdGlobalAccess": true,                     /* Allow accessing UMD globals from modules. */
     // "moduleSuffixes": [],                             /* List of file name suffixes to search when resolving a module. */
     // "resolveJsonModule": true /* Enable importing .json files. */,
@@ -109,7 +109,7 @@
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
   // "paths": {
-  //   "lupine.js": ["../../lupine.js/src"]
+  //   "lupine.web": ["../../lupine.web/src"]
   // },
   // "exports": {
   //   "./src/routes/index.ts": "r-index.ts",
@@ -119,10 +119,10 @@
     // "apps/**/*.js",
     "apps/**/*.ts",
     "apps/**/*.tsx"
-    // "../../lupine.js/src/**/*.ts",
-    // "../../lupine.js/src/**/*.tsx",
-    // "../../lupine.js/jsx-runtime/src/**/*.ts",
-    // "../../lupine.js/jsx-runtime/src/**/*.tsx",
+    // "../../lupine.web/src/**/*.ts",
+    // "../../lupine.web/src/**/*.tsx",
+    // "../../lupine.web/jsx-runtime/src/**/*.ts",
+    // "../../lupine.web/jsx-runtime/src/**/*.tsx",
   ]
   // "exclude": ["node_modules"]
 }

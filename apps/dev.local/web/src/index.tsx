@@ -14,7 +14,7 @@ import {
   PageProps,
   Redirect,
   addWebVersion,
-} from 'lupine.js';
+} from 'lupine.web';
 import { fetchData } from './services/fetch-data';
 import { themes } from './styles/theme';
 import { NotFoundPage } from './components/not-found-page';

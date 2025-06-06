@@ -1,4 +1,4 @@
-import { JsonObject, webEnv } from 'lupine.js';
+import { JsonObject, webEnv } from 'lupine.web';
 
 export const fetchData = async (
   urlWithoutHost: string,

@@ -1,6 +1,6 @@
 
 import { devAdminPageRouter } from 'lupine.api/admin';
-import { addWebVersion, bindGlobalStyles, bindLang, bindRenderPageFunctions, bindRouter, bindTheme, debugWatch, PageRouter, setDefaultMetaDescription, setDefaultMetaTitle, webEnv } from 'lupine.js';
+import { addWebVersion, bindGlobalStyles, bindLang, bindRenderPageFunctions, bindRouter, bindTheme, debugWatch, PageRouter, setDefaultMetaDescription, setDefaultMetaTitle, webEnv } from 'lupine.web';
 import { themes } from '../styles/theme';
 import { baseCss } from '../styles/base-css';
 import { ClientEnvKeys } from '../../../../shared-web-src';

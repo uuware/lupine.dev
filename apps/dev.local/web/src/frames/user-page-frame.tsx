@@ -6,7 +6,7 @@ import {
   VNode,
   CssProps,
   MediaQueryRange,
-} from 'lupine.js';
+} from 'lupine.web';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 import { getCookieUser } from '../services/shared-data';

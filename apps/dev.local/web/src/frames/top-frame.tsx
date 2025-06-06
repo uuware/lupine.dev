@@ -1,4 +1,4 @@
-import { VNode, CssProps, getWebVersion } from 'lupine.js';
+import { VNode, CssProps, getWebVersion } from 'lupine.web';
 
 export const TopFrame = async (placeholderClassname: string, vnode: VNode<any>) => {
   const cssContainer: CssProps = {

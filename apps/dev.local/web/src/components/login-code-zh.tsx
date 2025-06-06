@@ -7,7 +7,7 @@ import {
   NotificationMessage,
   initializePage,
   RefProps,
-} from 'lupine.js';
+} from 'lupine.web';
 import { Footer } from './footer';
 import { setCookieUser } from '../services/shared-data';
 

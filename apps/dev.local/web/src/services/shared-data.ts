@@ -1,4 +1,4 @@
-import { DomUtils, getEitherCookie } from 'lupine.js';
+import { DomUtils, getEitherCookie } from 'lupine.web';
 import { userCookieName } from '../models';
 
 export type UserCookieType = {

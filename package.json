@@ -1,10 +1,10 @@
 {
-  "name": "lupine.dev",
+  "name": "lupine.js",
   "version": "1.0.1",
   "license": "MIT",
   "author": "uuware.com",
   "homepage": "https://uuware.com/",
-  "description": "Lupine.dev is a development environment for LupineJS and LupineApi.",
+  "description": "lupine.js is a full-featured web application that includes both frontend and backend.",
   "engines": {
     "node": ">= 20"
   },
@@ -22,7 +22,7 @@
     "format": "prettier --write \"**/*.{js,json,css,scss,md,html,yaml,ts,jsx,tsx}\""
   },
   "dependencies": {
-    "lupine.js": "file:packages/lupine.js",
+    "lupine.web": "file:packages/lupine.web",
     "lupine.api": "file:packages/lupine.api"
   },
   "devDependencies": {

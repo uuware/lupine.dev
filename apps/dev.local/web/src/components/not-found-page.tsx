@@ -1,4 +1,4 @@
-import { PageProps } from 'lupine.js';
+import { PageProps } from 'lupine.web';
 
 export const NotFoundPage = async (props: PageProps) => {
   return (

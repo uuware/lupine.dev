@@ -7,7 +7,7 @@ import {
   PageProps,
   RefProps,
   CssProps,
-} from 'lupine.js';
+} from 'lupine.web';
 
 export const AdminUserPage = async (props: PageProps) => {
   const css: CssProps = {

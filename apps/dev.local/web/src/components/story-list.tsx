@@ -1,4 +1,4 @@
-import { adjustedMediaQueryRange, CssProps, MediaQueryDirection, MediaQueryMaxWidth, MediaQueryRange, Panel } from 'lupine.js';
+import { adjustedMediaQueryRange, CssProps, MediaQueryDirection, MediaQueryMaxWidth, MediaQueryRange, Panel } from 'lupine.web';
 import { StoryCardShortProps } from './story-props';
 import { StoryCard } from './story-card';
 

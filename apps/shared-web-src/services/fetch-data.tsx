@@ -1,4 +1,4 @@
-import { JsonObject, webEnv } from 'lupine.js';
+import { JsonObject, webEnv } from 'lupine.web';
 import { ClientEnvKeys } from '../common/client-env-keys';
 
 // This is called from the frontend and the backend as well, so API_BASE_URL may be different.

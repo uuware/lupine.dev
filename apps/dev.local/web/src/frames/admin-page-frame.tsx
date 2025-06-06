@@ -1,4 +1,4 @@
-import { MenuBar, MediaQueryMaxWidth, webSetting, VNode, CssProps, getWebVersion } from 'lupine.js';
+import { MenuBar, MediaQueryMaxWidth, webSetting, VNode, CssProps, getWebVersion } from 'lupine.web';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 

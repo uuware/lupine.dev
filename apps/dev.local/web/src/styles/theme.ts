@@ -1,4 +1,4 @@
-import { baseThemes } from 'lupine.js';
+import { baseThemes } from 'lupine.web';
 
 const themesBase = {
   // '--input-padding': '1.07rem .6rem',

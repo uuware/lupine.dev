@@ -7,7 +7,7 @@ import {
   NotificationColor,
   RefProps,
   ThemeSelector,
-} from 'lupine.js';
+} from 'lupine.web';
 import { getCookieUser } from '../services/shared-data';
 import { userCookieName } from '../models';
 

@@ -1,4 +1,4 @@
-import { CssProps, MediaQueryRange, PageProps } from 'lupine.js';
+import { CssProps, MediaQueryRange, PageProps } from 'lupine.web';
 import { HomeSearchComponent } from '../components/home-search-component';
 
 export const AdminItemListPage = async (props: PageProps) => {

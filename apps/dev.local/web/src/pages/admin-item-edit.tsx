@@ -1,4 +1,4 @@
-import { CssProps, MediaQueryRange, PageProps } from 'lupine.js';
+import { CssProps, MediaQueryRange, PageProps } from 'lupine.web';
 
 export const AdminItemEditPage = async (props: PageProps) => {
   const css: CssProps = {

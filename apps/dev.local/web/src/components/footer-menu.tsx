@@ -1,4 +1,4 @@
-import { CssProps, MediaQueryRange } from 'lupine.js';
+import { CssProps, MediaQueryRange } from 'lupine.web';
 
 export const FooterMenu = (props: any) => {
   const css: CssProps = {

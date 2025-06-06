@@ -1,7 +1,6 @@
-# lupine.dev
+# lupine.js
 
-This repo is used for development of LupineJs and LupineApi.
-It contains LupineJs and LupineApi source code as separate repos, and the environment to build and run them.
+Lupine.js is a full-featured web application that includes both frontend and backend. The frontend, Lupine.web, is an extremely lightweight framework using React TSX syntax. The backend, Lupine.api, is a highly efficient and minimalistic framework similar to Express. It supports server-side rendering from scratch, supporting HTTPS and multiple domains.
 
 # How to start
 
@@ -110,11 +109,11 @@ export const UserInfo = (props?: any) => {
 ## Nested repo in VS Code
 For VS Code to detect nested repo under packages, you need to open Preferences > Settings, search `Repository`, and under `Git: Repository Scan Max Depth`, set it to `2`.
 
-## Add lupine.js and lupine.api packages
+## Add lupine.web and lupine.api packages
 As VS Code is good to manage separate packages, so we don't use git subtree or submodule.
 Under packages folder, pull two packages (only once):
 ```
-git clone https://github.com/uuware/lupine.js.git
+git clone https://github.com/uuware/lupine.web.git
 git clone https://github.com/uuware/lupine.api.git
 ```
 
@@ -176,6 +175,6 @@ In `apps\[your-app-name]\lupine.json`, add the following code to `entryPoints`:
 ```
 
 # How to check Code frequency (steps)
-https://api.github.com/repos/uuware/lupine.dev/languages
+https://api.github.com/repos/uuware/lupine.js/languages
 Or
 Github -> Code -> Insights -> Code frequency

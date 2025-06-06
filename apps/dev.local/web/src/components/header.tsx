@@ -1,4 +1,4 @@
-import { MediaQueryRange, MediaQueryMaxWidth, webSetting } from 'lupine.js';
+import { MediaQueryRange, MediaQueryMaxWidth, webSetting } from 'lupine.web';
 import { UserInfo } from './user-info';
 
 export const Header = (props: { title: string; subtitle?: string }) => {

@@ -6,7 +6,7 @@ import {
   NotificationColor,
   PageProps,
   CssProps,
-} from 'lupine.js';
+} from 'lupine.web';
 
 const submitFormData = async (body: any) => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/add-contact', body);

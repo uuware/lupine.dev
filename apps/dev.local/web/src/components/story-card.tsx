@@ -1,4 +1,4 @@
-import { initializePage, NotificationMessage, NotificationColor, RefProps, CssProps } from 'lupine.js';
+import { initializePage, NotificationMessage, NotificationColor, RefProps, CssProps } from 'lupine.web';
 import { StoryCardShortProps } from './story-props';
 
 export const StoryCard = (props: StoryCardShortProps) => {

@@ -8,7 +8,7 @@ import {
   uploadFile,
   webSetting,
   CssProps,
-} from 'lupine.js';
+} from 'lupine.web';
 
 export const AdminCfgPage = async (props: PageProps) => {
   const css: CssProps = {

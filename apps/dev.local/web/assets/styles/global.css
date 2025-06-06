@@ -166,6 +166,10 @@ body {
   height: 100%;
 }
 
+.color-inherit {
+  color: inherit;
+}
+
 /* h1 {
   font-size: 2.5rem;
 }
@@ -447,7 +451,7 @@ progress {
   /* 2 */
 }
 
-/* Lupine.Js system */
+/* lupine.web system */
 .lupine-root {
   width: 100%;
   height: 100%;

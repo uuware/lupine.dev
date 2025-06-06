@@ -1,2 +1,2 @@
 # Add packages
-Place to add lupine.js and lupine.api packages.
+Place to add lupine.web and lupine.api packages.

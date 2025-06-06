@@ -1,4 +1,4 @@
-import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, RefProps } from 'lupine.js';
+import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, RefProps } from 'lupine.web';
 
 export const User1Page = async () => {
   const css: CssProps = {

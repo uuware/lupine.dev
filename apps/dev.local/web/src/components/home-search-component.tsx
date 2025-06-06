@@ -1,4 +1,4 @@
-import { CssProps, DragFresh, DragRefreshCloseProps, HtmlVar, initializePage, NotificationColor, NotificationMessage, RefProps } from 'lupine.js';
+import { CssProps, DragFresh, DragRefreshCloseProps, HtmlVar, initializePage, NotificationColor, NotificationMessage, RefProps } from 'lupine.web';
 import { StoryListComponent } from './story-list';
 import { StoryCardShortProps } from './story-props';
 
