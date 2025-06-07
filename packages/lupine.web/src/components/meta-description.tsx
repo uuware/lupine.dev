@@ -1,17 +1,10 @@
 // import { bindPageResetEvent } from '../core/page-reset-events';
 
-let _description = { value: '', defaultValue: '' };
+import { addMetaDataTags } from "../core/bind-meta";
+
 export const MetaDescription = ({ children }: { children: string }) => {
-  _description.value = children;
+  addMetaDataTags('name:description', `<meta name="description" content="${children}">`);
   return <></>;
-};
-
-export const getMetaDescription = () => {
-  return _description.value || _description.defaultValue;
-};
-
-export const setDefaultMetaDescription = (children: string) => {
-  _description.defaultValue = children;
 };
 
 // bindPageResetEvent(() => {

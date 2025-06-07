@@ -1,7 +1,8 @@
+import { ThemesProps } from '../models';
 import { darkThemes } from './dark-themes';
 import { lightThemes } from './light-themes';
 
-export const baseThemes: { [key: string]: { [key: string]: string } } = {
+export const baseThemes: ThemesProps = {
   light: lightThemes,
   dark: darkThemes,
   lightGreen: {

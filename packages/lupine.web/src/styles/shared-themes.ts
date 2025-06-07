@@ -1,4 +1,6 @@
-export const sharedThemes: { [key: string]: string } = {
+import { ThemeProps } from "../models";
+
+export const sharedThemes: ThemeProps = {
   // z-index
   '--layer-cover': '10',
   '--layer-sidebar': '100',

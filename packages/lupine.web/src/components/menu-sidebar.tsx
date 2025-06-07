@@ -1,7 +1,7 @@
 import { bindGlobalStyles, getRenderPageProps } from '../core';
 import { CssProps, RefProps } from '../jsx';
 import { stopPropagation } from '../lib';
-import { MediaQueryMaxWidth } from '../types';
+import { MediaQueryMaxWidth } from '../styles';
 import { NestMenuItemProps } from './menu-item-props';
 
 const fetchMenu = async (menuId: string) => {

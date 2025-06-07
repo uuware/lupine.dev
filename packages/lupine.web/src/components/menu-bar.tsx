@@ -1,6 +1,6 @@
 import { getRenderPageProps } from '../core';
 import { RefProps } from '../jsx';
-import { MediaQueryMaxWidth } from '../types';
+import { MediaQueryMaxWidth } from '../styles';
 import { LinkItem } from './link-item';
 import { NestMenuItemProps } from './menu-item-props';
 

@@ -1,6 +1,7 @@
 import { sharedThemes } from './shared-themes';
+import { ThemeProps } from '../models';
 
-export const darkThemes: { [key: string]: string } = {
+export const darkThemes: ThemeProps = {
   ...sharedThemes,
   '--theme-name': 'dark',
 

@@ -1,6 +1,6 @@
 
 import { devAdminPageRouter } from 'lupine.api/admin';
-import { addWebVersion, bindGlobalStyles, bindLang, bindRenderPageFunctions, bindRouter, bindTheme, debugWatch, PageRouter, setDefaultMetaDescription, setDefaultMetaTitle, webEnv } from 'lupine.web';
+import { addWebVersion, bindGlobalStyles, bindLang, bindRenderPageFunctions, bindRouter, bindTheme, debugWatch, PageRouter, setDefaultMetaDescription, setDefaultPageTitle, webEnv } from 'lupine.web';
 import { themes } from '../styles/theme';
 import { baseCss } from '../styles/base-css';
 import { ClientEnvKeys } from '../../../../shared-web-src';
@@ -14,7 +14,7 @@ addWebVersion('20250409');
 bindLang('zh-cn', {});
 bindTheme('light', themes);
 bindGlobalStyles('comm-css', ':root', baseCss);
-setDefaultMetaTitle('Sample - Page Title');
+setDefaultPageTitle('Sample - Page Title');
 setDefaultMetaDescription('Sample - Page Description');
 
 bindRenderPageFunctions({ fetchData });

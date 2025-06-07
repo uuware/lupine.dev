@@ -1,4 +1,3 @@
-import { getMetaDataObject, getMetaDataTags, getMetaTitle } from '../components';
 import { VNode } from '../jsx';
 import { initWebEnv, initWebSetting } from '../lib';
 import { Logger } from '../lib/logger';
@@ -9,16 +8,8 @@ import { mountComponents } from './mount-components';
 import { PageRouter } from './page-router';
 import { callPageLoadedEvent } from './page-loaded-events';
 import { initServerCookies } from './server-cookie';
-import { IToClientDelivery } from '../models/to-client-delivery-props';
-
-export type JsonKeyValue = {
-  [key: string]: string | number | boolean | null | undefined | JsonKeyValue | JsonKeyValue[];
-};
-export type JsonObject =
-  | JsonKeyValue[]
-  | {
-      [key: string]: string | number | boolean | null | undefined | JsonKeyValue | JsonKeyValue[];
-    };
+import { IToClientDelivery, JsonObject } from '../models';
+import { getMetaDataObject, getMetaDataTags, getPageTitle } from './bind-meta';
 
 export type RenderPageFunctionsType = {
   fetchData: (url: string, postBody?: string | JsonObject, returnRawResponse?: boolean) => Promise<any>;
@@ -118,7 +109,7 @@ export const generatePage = async (props: PageProps, toClientDelivery: IToClient
 
   return {
     content,
-    title: getMetaTitle(),
+    title: getPageTitle(),
     metaData: getMetaDataTags(),
     globalCss: cssText,
     themeName: currentTheme.themeName,
@@ -165,7 +156,7 @@ export const initializePage = async (newUrl?: string) => {
   updateTheme(getCurrentTheme().themeName);
 
   // title
-  document.title = getMetaTitle();
+  document.title = getPageTitle();
   const metaData = getMetaDataObject();
   // meta data?
 };

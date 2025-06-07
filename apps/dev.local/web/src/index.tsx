@@ -5,7 +5,7 @@ import {
   webEnv,
   PageRouter,
   bindTheme,
-  setDefaultMetaTitle,
+  setDefaultPageTitle,
   setDefaultMetaDescription,
   bindGlobalStyles,
   _LupineJs,
@@ -51,7 +51,7 @@ addWebVersion('20250409');
 bindLang('zh-cn', {});
 bindTheme('light', themes);
 bindGlobalStyles('comm-css', ':root', baseCss);
-setDefaultMetaTitle('Development Project for LupineJS');
+setDefaultPageTitle('Development Project for LupineJS');
 setDefaultMetaDescription('Development Project for LupineJS');
 
 bindRenderPageFunctions({ fetchData });

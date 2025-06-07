@@ -1,4 +1,4 @@
-import { baseThemes } from 'lupine.web';
+import { baseThemes, ThemesProps } from 'lupine.web';
 
 const themesBase = {
   // '--input-padding': '1.07rem .6rem',
@@ -6,7 +6,7 @@ const themesBase = {
   '--font-family-base':
     'PingFang SC,system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Hiragino Sans GB,Microsoft YaHei UI,Microsoft YaHei,Arial,sans-serif',
 };
-export const themes = {
+export const themes: ThemesProps = {
   light: {
     ...baseThemes.light,
     ...themesBase,

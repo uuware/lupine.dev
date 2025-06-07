@@ -1,4 +1,4 @@
-import { mountComponents, mountSelfComponents } from '../core';
+import { mountComponents } from '../core';
 import { RefProps, VNode } from '../jsx';
 import { stopPropagation } from '../lib';
 

@@ -1,5 +1,5 @@
-import { CssProps } from '../jsx';
 import { DomUtils } from '../lib';
+import { ThemesProps } from '../models';
 import { getEitherCookie } from './server-cookie';
 
 // theme doesn't need to reset, theme name is stored in cookie
@@ -8,8 +8,8 @@ export const defaultThemeName = 'light';
 export const themeCookieName = 'theme';
 export const updateThemeEventName = 'updateTheme';
 export const themeAttributeName = 'data-theme';
-const _themeCfg: any = { defaultTheme: defaultThemeName, themes: {} };
-export const bindTheme = (defaultTheme: string, themes: { [key: string]: CssProps }) => {
+const _themeCfg: { defaultTheme: string; themes: ThemesProps } = { defaultTheme: defaultThemeName, themes: {} };
+export const bindTheme = (defaultTheme: string, themes: ThemesProps) => {
   _themeCfg.defaultTheme = defaultTheme;
   _themeCfg.themes = themes;
 
@@ -25,7 +25,7 @@ export const getCurrentTheme = () => {
       DomUtils.setCookie(themeCookieName, _themeCfg.defaultTheme);
     }
   }
-  return { themeName, themes: _themeCfg.themes as { [key: string]: CssProps } };
+  return { themeName, themes: _themeCfg.themes };
 };
 
 export const updateTheme = (themeName: string) => {
@@ -39,6 +39,7 @@ export const updateTheme = (themeName: string) => {
   document.documentElement.setAttribute(themeAttributeName, themeName);
 
   // update theme for all iframe
+  // TODO: third-party domains?
   const allIframe = document.querySelectorAll('iframe');
   for (let i = 0; i < allIframe.length; i++) {
     if (allIframe[i].contentWindow && allIframe[i].contentWindow!.top === window) {

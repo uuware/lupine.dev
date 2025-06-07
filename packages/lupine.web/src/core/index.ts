@@ -1,6 +1,7 @@
 export * from './bind-attributes';
 export * from './bind-lang';
 export * from './bind-links';
+export * from './bind-meta';
 export * from './bind-ref';
 export * from './bind-styles';
 export * from './bind-theme';

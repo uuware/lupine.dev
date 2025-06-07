@@ -5,8 +5,8 @@ export * from './jsx';
 export * from './core';
 export * from './lib';
 export * from './components';
-export * from './types';
-export * from './assets/themes';
+export * from './models';
+export * from './styles';
 
 declare global {
   namespace JSX {
