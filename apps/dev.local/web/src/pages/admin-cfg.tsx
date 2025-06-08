@@ -1,14 +1,5 @@
-import {
-  DomUtils,
-  getRenderPageProps,
-  MediaQueryMaxWidth,
-  NotificationMessage,
-  NotificationColor,
-  PageProps,
-  uploadFile,
-  webSetting,
-  CssProps,
-} from 'lupine.web';
+import { DomUtils, MediaQueryMaxWidth, NotificationColor, NotificationMessage, uploadFile } from 'lupine.components';
+import { getRenderPageProps, PageProps, webSetting, CssProps } from 'lupine.web';
 
 export const AdminCfgPage = async (props: PageProps) => {
   const css: CssProps = {

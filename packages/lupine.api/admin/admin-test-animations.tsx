@@ -1,4 +1,6 @@
 import {
+  RefProps,
+  updateStyles,
   ButtonPushAnimation,
   ButtonPushAnimationSize,
   HtmlVar,
@@ -6,15 +8,13 @@ import {
   PlayButtonSize,
   Progress,
   ProgressHookProps,
-  RefProps,
   Spinner01,
   Spinner02,
   Spinner03,
   SpinnerSize,
   TextGlow,
   TextWave,
-  updateStyles,
-} from 'lupine.web';
+} from 'lupine.components';
 
 const TestButton = () => {
   const onClick = async () => {

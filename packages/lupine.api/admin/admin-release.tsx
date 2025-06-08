@@ -1,12 +1,12 @@
 import {
   CssProps,
-  DomUtils,
   getRenderPageProps,
+  RefProps,
+  DomUtils,
   HtmlVar,
   NotificationColor,
   NotificationMessage,
-  RefProps,
-} from 'lupine.web';
+} from 'lupine.components';
 
 const ReleaseList = (props: { result: any; onUpdate: () => void }) => {
   const ref: RefProps = {

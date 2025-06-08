@@ -8,7 +8,7 @@ import {
   PageProps,
   RefProps,
   CssProps,
-} from 'lupine.web';
+} from 'lupine.components';
 import { getUserInfo, UserInfoType } from '../components/user-info';
 
 const PageContent = ({ user }: { user: UserInfoType }) => {

@@ -5,7 +5,7 @@ import {
   webSetting,
   VNode,
   CssProps,
-} from 'lupine.web';
+} from 'lupine.components';
 import { Footer } from '../components/footer';
 import { Header } from '../components/header';
 

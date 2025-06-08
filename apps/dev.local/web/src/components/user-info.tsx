@@ -3,11 +3,11 @@ import {
   DomUtils,
   getRenderPageProps,
   HtmlVar,
-  NotificationMessage,
   NotificationColor,
+  NotificationMessage,
   RefProps,
   ThemeSelector,
-} from 'lupine.web';
+} from 'lupine.components';
 import { getCookieUser } from '../services/shared-data';
 import { userCookieName } from '../models';
 

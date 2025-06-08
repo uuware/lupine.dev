@@ -1,16 +1,16 @@
 import {
   CssProps,
+  RefProps,
   EditableLabel,
   HtmlVar,
   ModalWindow,
   NotificationColor,
   NotificationMessage,
   PagingLink,
-  RefProps,
   ToggleBaseHookProps,
   ToggleSwitch,
   ToggleSwitchSize,
-} from 'lupine.web';
+} from 'lupine.components';
 
 type SampleDataProps = {
   id: number;

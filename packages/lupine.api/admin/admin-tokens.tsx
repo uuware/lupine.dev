@@ -1,14 +1,14 @@
 import {
   CssProps,
-  EditableLabel,
   getRenderPageProps,
+  RefProps,
+  EditableLabel,
   HtmlVar,
   ModalWindow,
   NotificationColor,
   NotificationMessage,
   PagingLink,
-  RefProps,
-} from 'lupine.web';
+} from 'lupine.components';
 
 export type TokenProps = {
   token: string;

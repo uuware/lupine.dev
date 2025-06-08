@@ -1,12 +1,24 @@
-
 import { devAdminPageRouter } from 'lupine.api/admin';
-import { addWebVersion, bindGlobalStyles, bindLang, bindRenderPageFunctions, bindRouter, bindTheme, debugWatch, PageRouter, setDefaultMetaDescription, setDefaultPageTitle, webEnv } from 'lupine.web';
+import {
+  addWebVersion,
+  bindGlobalStyles,
+  bindLang,
+  bindRenderPageFunctions,
+  bindRouter,
+  bindTheme,
+  debugWatch,
+  isFrontEnd,
+  PageRouter,
+  setDefaultMetaDescription,
+  setDefaultPageTitle,
+  webEnv,
+} from 'lupine.components';
 import { themes } from '../styles/theme';
 import { baseCss } from '../styles/base-css';
 import { ClientEnvKeys } from '../../../../shared-web-src';
 import { fetchData } from '../services/fetch-data';
 
-if (typeof window !== 'undefined' && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
+if (isFrontEnd() && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
   debugWatch(webEnv(ClientEnvKeys.API_PORT, 0));
 }
 

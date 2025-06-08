@@ -1,5 +1,6 @@
-import { DomUtils } from '../lib';
+import { setCookie } from '../lib/cookie';
 import { ThemesProps } from '../models';
+import { isFrontEnd } from '../lib/is-frontend';
 import { getEitherCookie } from './server-cookie';
 
 // theme doesn't need to reset, theme name is stored in cookie
@@ -21,8 +22,8 @@ export const getCurrentTheme = () => {
   let themeName = getEitherCookie(themeCookieName) as string;
   if (!themeName || !_themeCfg.themes[themeName]) {
     themeName = _themeCfg.defaultTheme;
-    if (typeof window !== 'undefined') {
-      DomUtils.setCookie(themeCookieName, _themeCfg.defaultTheme);
+    if (isFrontEnd()) {
+      setCookie(themeCookieName, _themeCfg.defaultTheme);
     }
   }
   return { themeName, themes: _themeCfg.themes };
@@ -31,11 +32,11 @@ export const getCurrentTheme = () => {
 export const updateTheme = (themeName: string) => {
   // Theme is only updated in Browser
   _themeCfg.defaultTheme = themeName;
-  if (typeof window === 'undefined') {
+  if (!isFrontEnd()) {
     return;
   }
 
-  DomUtils.setCookie(themeCookieName, themeName);
+  setCookie(themeCookieName, themeName);
   document.documentElement.setAttribute(themeAttributeName, themeName);
 
   // update theme for all iframe

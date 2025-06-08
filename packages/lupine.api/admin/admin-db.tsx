@@ -1,4 +1,4 @@
-import { CssProps, getRenderPageProps, RefProps } from 'lupine.web';
+import { CssProps, getRenderPageProps, RefProps } from 'lupine.components';
 
 const fetchCreateTables = async () => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData(`/api/admin/db/install`);

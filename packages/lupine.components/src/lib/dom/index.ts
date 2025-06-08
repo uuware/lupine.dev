@@ -1,5 +1,5 @@
+import { clearCookie, getCookie, setCookie } from 'lupine.web';
 import { calculateTextWidth } from './calculate-text-width';
-import { clearCookie, getCookie, setCookie } from './cookie';
 import { download } from './download';
 import { downloadStream } from './download-stream';
 

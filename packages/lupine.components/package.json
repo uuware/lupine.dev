@@ -1,0 +1,40 @@
+{
+  "name": "lupine.components",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": "uuware.com",
+  "homepage": "https://uuware.com/",
+  "description": "lupine.components is a components collection for lupine.web.",
+  "main": "src/index.ts",
+  "source": "src/index.ts",
+  "types": "src/index.ts",
+  "engines": {
+    "node": ">= 20"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "browser": "./src/index.ts",
+      "umd": "./src/index.ts",
+      "import": "./src/index.ts",
+      "require": "./src/index.ts"
+    }
+  },
+  "keywords": [
+    "frontend",
+    "responsive",
+    "lightweight",
+    "grid"
+  ],
+  "scripts": {
+    "note": "echo 'build is not needed as the typescript code is supposed to be referred directly from other projects'",
+    "npm-publish": "npm publish --access public",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "lupine.web": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5"
+  }
+}

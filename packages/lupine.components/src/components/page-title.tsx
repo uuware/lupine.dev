@@ -1,4 +1,4 @@
-import { setPageTitle } from "../core/bind-meta";
+import { setPageTitle } from "lupine.web";
 
 export const PageTitle = ({ children }: { children: string }) => {
   setPageTitle(children);

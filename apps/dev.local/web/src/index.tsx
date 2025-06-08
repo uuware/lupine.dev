@@ -12,9 +12,10 @@ import {
   _lupineJs,
   bindLang,
   PageProps,
-  Redirect,
   addWebVersion,
-} from 'lupine.web';
+  isFrontEnd,
+  Redirect,
+} from 'lupine.components';
 import { fetchData } from './services/fetch-data';
 import { themes } from './styles/theme';
 import { NotFoundPage } from './components/not-found-page';
@@ -43,7 +44,7 @@ import { UserMinePage } from './pages/user-mine-page';
 import { UserFavoritePage } from './pages/user-favorite-page';
 import { LoginCodePage } from './components/login-code';
 
-if (typeof window !== 'undefined' && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
+if (isFrontEnd() && webEnv(ClientEnvKeys.NODE_ENV, '') === 'development') {
   debugWatch(webEnv(ClientEnvKeys.API_PORT, 0));
 }
 

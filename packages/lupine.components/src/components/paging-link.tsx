@@ -1,5 +1,4 @@
-import { CssProps } from '../jsx';
-import { bindGlobalStyles, getRenderPageProps } from '../core';
+import { CssProps, bindGlobalStyles, getRenderPageProps } from 'lupine.web';
 
 let _DEFAULT_PAGE_LIMIT = 7;
 export const getDefaultPageLimit = () => {

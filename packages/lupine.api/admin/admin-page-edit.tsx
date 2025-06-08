@@ -1,6 +1,14 @@
-import { CssProps, DomUtils, getRenderPageProps, ModalWindow, NotificationMessage, PopupMenu, RefProps } from 'lupine.web';
+import {
+  CssProps,
+  getRenderPageProps,
+  isFrontEnd,
+  RefProps,
+  DomUtils,
+  ModalWindow,
+  NotificationMessage,
+  PopupMenu,
+} from 'lupine.components';
 import { DesignBlockBox } from './design/design-block-box';
-import { BlockTitle } from './design/block-title';
 import { BlockParagraph } from './design/block-paragraph';
 
 const fetchTableList = async () => {
@@ -50,7 +58,7 @@ export const SaveMenu = (props: {
 };
 
 export const AdminPageEditPage = (menuId: string) => {
-  if (typeof window === 'undefined') {
+  if (!isFrontEnd()) {
     return <div>No SSR.</div>;
   }
 

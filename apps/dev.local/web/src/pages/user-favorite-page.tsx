@@ -1,4 +1,4 @@
-import { CssProps, MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.web';
+import { CssProps, MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.components';
 
 const fetchHomeData = async (props: PageProps) => {
   const data = await props.renderPageFunctions.fetchData('/api/settings');

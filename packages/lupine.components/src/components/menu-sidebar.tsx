@@ -1,5 +1,4 @@
-import { bindGlobalStyles, getRenderPageProps } from '../core';
-import { CssProps, RefProps } from '../jsx';
+import { bindGlobalStyles, CssProps, getRenderPageProps, RefProps } from 'lupine.web';
 import { stopPropagation } from '../lib';
 import { MediaQueryMaxWidth } from '../styles';
 import { NestMenuItemProps } from './menu-item-props';

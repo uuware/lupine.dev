@@ -1,5 +1,4 @@
-import { mountComponents } from '../core';
-import { CssProps, RefProps, VNode } from '../jsx';
+import { CssProps, RefProps, VNode, mountComponents } from 'lupine.web';
 import { stopPropagation } from '../lib';
 
 export type FloatWindowCloseProps = () => void;

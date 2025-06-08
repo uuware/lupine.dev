@@ -1,18 +1,13 @@
+import { bindGlobalStyles, CssProps, ComponentChildren, RefProps, VNode, getWebVersion } from 'lupine.components';
 import {
-  bindGlobalStyles,
-  CssProps,
-  ComponentChildren,
-  RefProps,
+  NestMenuItemProps,
+  DomUtils,
   MenuSidebar,
   ThemeSelector,
-  DomUtils,
-  NestMenuItemProps,
-  Tabs,
   TabsUpdateProps,
   TabsPageProps,
-  VNode,
-  getWebVersion,
-} from 'lupine.web';
+  Tabs,
+} from 'lupine.components';
 import { adminCss } from './admin-css';
 import { CreateTablesPage, RunSqlPage } from './admin-db';
 import { TableListPage } from './admin-table-list';

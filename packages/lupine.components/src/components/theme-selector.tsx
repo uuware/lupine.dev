@@ -1,5 +1,4 @@
-import { bindGlobalStyles, getCurrentTheme, updateTheme } from '../core';
-import { CssProps } from '../jsx';
+import { CssProps, bindGlobalStyles, getCurrentTheme, updateTheme } from 'lupine.web';
 import { PopupMenu } from './popup-menu';
 
 export type ThemeSelectorProps = {

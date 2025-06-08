@@ -1,4 +1,4 @@
-import { ThemesProps } from '../models';
+import { ThemesProps } from 'lupine.web';
 import { darkThemes } from './dark-themes';
 import { lightThemes } from './light-themes';
 

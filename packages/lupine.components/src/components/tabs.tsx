@@ -1,5 +1,4 @@
-import { mountComponents } from '../core';
-import { RefProps, VNode } from '../jsx';
+import { RefProps, VNode, mountComponents } from 'lupine.web';
 import { stopPropagation } from '../lib';
 
 export type TabsUpdateProps = {

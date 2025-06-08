@@ -1,4 +1,4 @@
-import { initializePage } from './core';
+import { _lupineJs } from './export-lupine';
 
 export function bindLinks(el: Element | Document) {
   const links = el.getElementsByTagName('a');
@@ -8,7 +8,7 @@ export function bindLinks(el: Element | Document) {
       href = href.substring(document.location.origin.length);
       // console.log(`====${href}, javascript:init('${document.links[i].href}')`);
       links[i].onclick = () => {
-        initializePage(href);
+        _lupineJs.initializePage(href);
         return false;
       };
     }

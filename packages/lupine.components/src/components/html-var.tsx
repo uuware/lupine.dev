@@ -1,5 +1,4 @@
-import { mountComponents } from '../core/mount-components';
-import { RefProps, VNode } from '../jsx';
+import { RefProps, VNode, mountComponents } from 'lupine.web';
 
 export const HtmlVar = (initial?: string | VNode<any>) => {
   let _value: string | VNode<any> = initial || '';

@@ -1,5 +1,4 @@
-import { bindGlobalStyles } from '../core';
-import { CssProps } from '../jsx';
+import { bindGlobalStyles, CssProps } from 'lupine.web';
 import { stopPropagation } from '../lib';
 /**
 How to use:

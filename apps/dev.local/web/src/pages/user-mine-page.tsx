@@ -1,4 +1,4 @@
-import { CssProps, DomUtils, getRenderPageProps, PageProps } from 'lupine.web';
+import { CssProps, DomUtils, getRenderPageProps, PageProps } from 'lupine.components';
 import { getCookieUser } from '../services/shared-data';
 import { userCookieName } from '../models';
 

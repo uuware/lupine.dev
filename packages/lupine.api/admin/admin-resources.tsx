@@ -1,19 +1,18 @@
 import {
   CssProps,
+  getRenderPageProps,
   DomUtils,
   formatBytes,
-  getRenderPageProps,
   HtmlVar,
+  InputWithTitle,
   MessageBox,
   MessageBoxButtonProps,
   NotificationColor,
   NotificationMessage,
-  RefProps,
+  Progress,
   ProgressHookProps,
   uploadFile,
-  Progress,
-  InputWithTitle,
-} from 'lupine.web';
+} from 'lupine.components';
 
 // https://www.toptal.com/designers/htmlarrows/symbols/
 const ResourcesList = (props: {

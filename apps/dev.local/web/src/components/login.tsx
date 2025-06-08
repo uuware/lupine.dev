@@ -6,7 +6,7 @@ import {
   NotificationColor,
   NotificationMessage,
   initializePage,
-} from 'lupine.web';
+} from 'lupine.components';
 import { Footer } from './footer';
 import { setCookieUser } from '../services/shared-data';
 

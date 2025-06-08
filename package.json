@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "lupine.web": "file:packages/lupine.web",
+    "lupine.components": "file:packages/lupine.components",
     "lupine.api": "file:packages/lupine.api"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
-import { DomUtils } from '../lib';
+import { setCookie } from '../lib/cookie';
+import { isFrontEnd } from '../lib/is-frontend';
 import { getEitherCookie } from './server-cookie';
 
 // The FE only loads one language for the consideration of the size
@@ -20,8 +21,8 @@ export const getCurrentLang = () => {
   let langName = getEitherCookie(langCookieName) as string;
   if (!langName || !_langCfg.langs[langName]) {
     langName = _langCfg.defaultLang;
-    if (typeof window !== 'undefined') {
-      DomUtils.setCookie(langCookieName, _langCfg.defaultLang);
+    if (isFrontEnd()) {
+      setCookie(langCookieName, _langCfg.defaultLang);
     }
   }
   return { langName, langs: _langCfg.langs };
@@ -31,11 +32,11 @@ export const getCurrentLang = () => {
 export const updateLang = (langName: string) => {
   // Lang is only updated in Browser
   _langCfg.defaultLang = langName;
-  if (typeof window === 'undefined') {
+  if (!isFrontEnd()) {
     return;
   }
 
-  DomUtils.setCookie(langCookieName, langName);
+  setCookie(langCookieName, langName);
   // document.documentElement.setAttribute(langAttributeName, langName);
 
   // // update lang for all iframe

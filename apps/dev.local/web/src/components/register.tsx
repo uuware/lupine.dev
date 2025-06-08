@@ -1,4 +1,4 @@
-import { CssProps, PageProps, DomUtils, getRenderPageProps, NotificationColor, NotificationMessage, webSetting } from 'lupine.web';
+import { CssProps, PageProps, DomUtils, getRenderPageProps, NotificationColor, NotificationMessage, webSetting } from 'lupine.components';
 import { Footer } from './footer';
 
 const fetchReg = async (body: any) => {

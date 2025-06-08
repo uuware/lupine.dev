@@ -1,5 +1,4 @@
-import { bindGlobalStyles } from '../core';
-import { CssProps } from '../jsx';
+import { CssProps, bindGlobalStyles } from 'lupine.web';
 /**
 How to use:
   Notification.sendMessage(message);

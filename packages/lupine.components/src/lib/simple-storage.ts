@@ -1,4 +1,4 @@
-// This class is used by both BE and FE (cookie for SSR).
+// Server side has the exactly same class
 export class SimpleStorage {
   private settings: { [key: string]: string } = {};
 

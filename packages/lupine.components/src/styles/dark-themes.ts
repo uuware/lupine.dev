@@ -1,5 +1,5 @@
+import { ThemeProps } from 'lupine.web';
 import { sharedThemes } from './shared-themes';
-import { ThemeProps } from '../models';
 
 export const darkThemes: ThemeProps = {
   ...sharedThemes,

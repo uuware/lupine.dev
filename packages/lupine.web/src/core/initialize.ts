@@ -1,5 +1,3 @@
-import { VNode } from '../jsx';
-import { initWebEnv, initWebSetting } from '../lib';
 import { Logger } from '../lib/logger';
 import { generateAllGlobalStyles } from './bind-styles';
 import { defaultThemeName, getCurrentTheme, updateTheme } from './bind-theme';
@@ -8,71 +6,13 @@ import { mountComponents } from './mount-components';
 import { PageRouter } from './page-router';
 import { callPageLoadedEvent } from './page-loaded-events';
 import { initServerCookies } from './server-cookie';
-import { IToClientDelivery, JsonObject } from '../models';
+import { IToClientDelivery } from '../models';
 import { getMetaDataObject, getMetaDataTags, getPageTitle } from './bind-meta';
+import { initWebEnv, initWebSetting } from '../lib/web-env';
+import { _lupineJs, PageProps, PageResultType, setRenderPageProps } from './export-lupine';
+import { isFrontEnd } from '../lib/is-frontend';
 
-export type RenderPageFunctionsType = {
-  fetchData: (url: string, postBody?: string | JsonObject, returnRawResponse?: boolean) => Promise<any>;
-  [key: string]: Function;
-};
-export interface PageProps {
-  url: string;
-  // urlSections: string[];
-  query: { [key: string]: string };
-  urlParameters: { [key: string]: string };
-  renderPageFunctions: RenderPageFunctionsType;
-}
-
-export type PageResultType = {
-  content: string;
-  title: string;
-  metaData: string;
-  themeName: string;
-  globalCss: string;
-};
-export type _LupineJs = {
-  generatePage: (props: any, toClientDelivery: IToClientDelivery) => Promise<PageResultType>;
-  renderPageFunctions: RenderPageFunctionsType;
-  router: PageRouter | ((props: PageProps) => Promise<VNode<any>>);
-  renderPageProps: PageProps;
-};
-
-const logger = new Logger('core');
-export const _lupineJs: _LupineJs = {} as _LupineJs;
-
-// for SSR, it exports _lupineJs function for the server to call
-if (typeof exports !== 'undefined') {
-  // ignore esbuild's warnings:
-  // The CommonJS "exports" variable is treated as a global variable in an ECMAScript module and may not work as expected [commonjs-variable-in-esm]
-  exports._lupineJs = () => {
-    return _lupineJs;
-  };
-}
-
-// this should be called by the FE and also by the server side to set fetchData and others for client and server side rendering.
-// And the RenderPageFunctionsType will be passed to call (generate) a page through PageProps
-export const bindRenderPageFunctions = (calls: RenderPageFunctionsType) => {
-  _lupineJs.renderPageFunctions = calls || {};
-};
-// export const getRenderPageFunctions = (): RenderPageFunctionsType => {
-//   return globalThis._lupineJs.renderPageFunctions;
-// }
-// this is only used inside the core
-const setRenderPageProps = (props: PageProps) => {
-  _lupineJs.renderPageProps = props;
-};
-// this is used by the code to get url info when it's executed in the FE or in the server side.
-export const getRenderPageProps = (): PageProps => {
-  return _lupineJs.renderPageProps;
-};
-
-export const bindRouter = (router: PageRouter | ((props: PageProps) => Promise<VNode<any>>)) => {
-  _lupineJs.router = router;
-};
-
-export const isFrontEnd = () => {
-  return typeof window === 'object' && typeof document === 'object';
-};
+const logger = new Logger('initialize');
 
 const renderTargetPage = async (props: PageProps, renderPartPage: boolean) => {
   if (_lupineJs.router instanceof PageRouter) {
@@ -82,7 +22,7 @@ const renderTargetPage = async (props: PageProps, renderPartPage: boolean) => {
 };
 
 // this is called by server side for SSR (server-side-rendering)
-export const generatePage = async (props: PageProps, toClientDelivery: IToClientDelivery): Promise<PageResultType> => {
+const generatePage = async (props: PageProps, toClientDelivery: IToClientDelivery): Promise<PageResultType> => {
   setRenderPageProps(props);
 
   initWebEnv(toClientDelivery.getWebEnv());
@@ -119,6 +59,7 @@ _lupineJs.generatePage = generatePage;
 
 let _pageInitialized = false;
 // this is called in the FE when the document is loaded
+// to avoid circular reference, bindLinks can't call initializePage directly
 export const initializePage = async (newUrl?: string) => {
   const currentPageInitialized = _pageInitialized;
   _pageInitialized = true;
@@ -160,7 +101,7 @@ export const initializePage = async (newUrl?: string) => {
   const metaData = getMetaDataObject();
   // meta data?
 };
-if (typeof window !== 'undefined') {
+if (isFrontEnd()) {
   addEventListener('popstate', (event) => {
     initializePage();
   });
@@ -168,3 +109,4 @@ if (typeof window !== 'undefined') {
     initializePage();
   });
 }
+_lupineJs.initializePage = initializePage;

@@ -1,4 +1,4 @@
-import { DomUtils, PageProps, PageRouter, Redirect } from 'lupine.web';
+import { PageProps, PageRouter, DomUtils, Redirect } from 'lupine.components';
 import { AdminFrame } from './admin-frame';
 import { AdminLoginPage } from './admin-login';
 import { AdminMenuSinglePage } from './admin-menu-list';

@@ -1,5 +1,4 @@
-import { getRenderPageProps } from '../core';
-import { RefProps } from '../jsx';
+import { getRenderPageProps, RefProps } from 'lupine.web';
 import { MediaQueryMaxWidth } from '../styles';
 import { LinkItem } from './link-item';
 import { NestMenuItemProps } from './menu-item-props';

@@ -1,4 +1,4 @@
-import { CssProps, DomUtils, getRenderPageProps, ModalWindow, NotificationMessage, RefProps } from 'lupine.web';
+import { CssProps, getRenderPageProps, RefProps, DomUtils, ModalWindow, NotificationMessage } from 'lupine.components';
 
 const fetchTableList = async () => {
   const data = await getRenderPageProps().renderPageFunctions.fetchData('/api/admin/db/tables');
@@ -61,9 +61,9 @@ export const AdminMenuEditPage = (menuId: string) => {
     onClick();
   };
 
-  const onDownload = async (tableName: string) => {
-    DomUtils.download('/api/admin/db/table-download?table=' + tableName);
-  };
+  // const onDownload = async (tableName: string) => {
+  //   DomUtils.download('/api/admin/db/table-download?table=' + tableName);
+  // };
 
   const onClick = async () => {
     const json = await fetchTableList();

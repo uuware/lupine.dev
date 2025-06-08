@@ -1,6 +1,6 @@
 // import { bindPageResetEvent } from '../core/page-reset-events';
 
-import { addMetaDataTags } from "../core/bind-meta";
+import { addMetaDataTags } from "lupine.web";
 
 export const MetaDescription = ({ children }: { children: string }) => {
   addMetaDataTags('name:description', `<meta name="description" content="${children}">`);

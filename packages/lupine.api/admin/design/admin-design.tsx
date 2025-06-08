@@ -1,4 +1,4 @@
-import { CssProps, PageProps } from 'lupine.web';
+import { CssProps, isFrontEnd, PageProps } from 'lupine.web';
 import { DesignBlockBox } from './design-block-box';
 import { dragData, findTopBlock } from './drag-data';
 import { BlockGrid } from './block-grid';
@@ -14,7 +14,7 @@ const fetchLogin = async (props: PageProps, username: string, password: string) 
 };
 
 export const AdminDesignPage = async (props: PageProps) => {
-  if (typeof window === 'undefined') {
+  if (!isFrontEnd()) {
     return <div>No SSR.</div>;
   }
   if (window.top === window) {

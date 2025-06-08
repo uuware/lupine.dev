@@ -1,12 +1,12 @@
 import {
   CssProps,
-  HtmlVar,
-  PagingLink,
   RefProps,
   bindGlobalStyles,
-  getDefaultPageLimit,
   getRenderPageProps,
-} from 'lupine.web';
+  getDefaultPageLimit,
+  HtmlVar,
+  PagingLink,
+} from 'lupine.components';
 
 const loadData = async (
   onLinkClick: (index: number) => Promise<void>,

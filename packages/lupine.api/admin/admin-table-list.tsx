@@ -1,12 +1,12 @@
 import {
-  CssProps,
   DomUtils,
-  NotificationMessage,
   NotificationColor,
+  NotificationMessage,
+  CssProps,
   RefProps,
   getRenderPageProps,
   mountComponents,
-} from 'lupine.web';
+} from 'lupine.components';
 import { adminFrameProps } from './admin-frame-props';
 import { TableDataPage } from './admin-table-data';
 

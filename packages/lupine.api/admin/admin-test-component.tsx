@@ -1,4 +1,5 @@
 import {
+  RefProps,
   FloatWindow,
   NotificationMessage,
   notificationColorFromValue,
@@ -15,8 +16,7 @@ import {
   Button,
   ButtonSize,
   ButtonHookProps,
-  RefProps,
-} from 'lupine.web';
+} from 'lupine.components';
 
 const TestWindows = () => {
   const doModal = (closeWhenClickOutside: boolean) => {
@@ -727,12 +727,37 @@ export const TestComponentPage = () => {
 
       <div class='row-box mb-s h3 bold'>Toggle Switch with text</div>
       <div class='row-box mb-s'>
-        <ToggleSwitch checked={true} size={ToggleSwitchSize.SmallSmall} text={{ on: 'On', off: 'Off' }} textWidth='50px' />
-        <ToggleSwitch checked={false} size={ToggleSwitchSize.SmallSmall} text={{ on: 'Enable', off: 'Disable' }} textWidth='50px' />
+        <ToggleSwitch
+          checked={true}
+          size={ToggleSwitchSize.SmallSmall}
+          text={{ on: 'On', off: 'Off' }}
+          textWidth='50px'
+        />
+        <ToggleSwitch
+          checked={false}
+          size={ToggleSwitchSize.SmallSmall}
+          text={{ on: 'Enable', off: 'Disable' }}
+          textWidth='50px'
+        />
         <ToggleSwitch checked={true} size={ToggleSwitchSize.Small} text={{ on: 'On', off: 'Off' }} textWidth='50px' />
-        <ToggleSwitch checked={false} size={ToggleSwitchSize.Small} text={{ on: 'Enable', off: 'Disable' }} textWidth='50px' />
-        <ToggleSwitch checked={true} size={ToggleSwitchSize.Medium} text={{ on: 'Set', off: 'Not Set' }} textWidth='60px' />
-        <ToggleSwitch checked={false} size={ToggleSwitchSize.Medium} text={{ on: 'Show', off: 'Hide' }} textWidth='60px' />
+        <ToggleSwitch
+          checked={false}
+          size={ToggleSwitchSize.Small}
+          text={{ on: 'Enable', off: 'Disable' }}
+          textWidth='50px'
+        />
+        <ToggleSwitch
+          checked={true}
+          size={ToggleSwitchSize.Medium}
+          text={{ on: 'Set', off: 'Not Set' }}
+          textWidth='60px'
+        />
+        <ToggleSwitch
+          checked={false}
+          size={ToggleSwitchSize.Medium}
+          text={{ on: 'Show', off: 'Hide' }}
+          textWidth='60px'
+        />
         <ToggleSwitch checked={true} size={ToggleSwitchSize.Large} text={{ on: 'Yes', off: 'No' }} />
         <ToggleSwitch checked={false} size={ToggleSwitchSize.Large} text={{ on: 'Up', off: 'Down' }} />
       </div>

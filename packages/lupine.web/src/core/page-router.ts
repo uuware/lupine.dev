@@ -1,7 +1,8 @@
 import { VNode } from '../jsx';
-import { Logger } from '../lib';
-import { isFrontEnd, PageProps } from './core';
+import { isFrontEnd } from '../lib/is-frontend';
+import { PageProps } from './export-lupine';
 import { mountComponents } from './mount-components';
+import { Logger } from '../lib/logger';
 
 export type PageRouterCallback = (props: PageProps) => Promise<VNode<any> | null>;
 

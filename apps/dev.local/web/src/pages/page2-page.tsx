@@ -1,4 +1,4 @@
-import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, RefProps, ToggleSwitch } from 'lupine.web';
+import { CssProps, getRenderPageProps, HtmlVar, MediaQueryMaxWidth, RefProps } from 'lupine.components';
 
 export const Page2Page = async () => {
   const css: CssProps = {

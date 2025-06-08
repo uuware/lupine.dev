@@ -1,9 +1,6 @@
+import { DomUtils, HtmlVar, NotificationColor, NotificationMessage } from 'lupine.components';
 import {
-  DomUtils,
   getRenderPageProps,
-  HtmlVar,
-  NotificationMessage,
-  NotificationColor,
   PageProps,
   RefProps,
   CssProps,

@@ -1,4 +1,4 @@
-import { CssProps, PageProps, DomUtils, webEnv, NotificationMessage, NotificationColor } from 'lupine.web';
+import { CssProps, PageProps, webEnv, DomUtils, NotificationColor, NotificationMessage } from 'lupine.components';
 import { adminCss } from './admin-css';
 
 const fetchLogin = async (props: PageProps, username: string, password: string) => {

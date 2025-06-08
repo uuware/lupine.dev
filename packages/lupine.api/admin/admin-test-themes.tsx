@@ -1,4 +1,4 @@
-import { darkThemes, lightThemes, CssProps } from 'lupine.web';
+import { CssProps, darkThemes, lightThemes } from 'lupine.components';
 
 const TestThemes = () => {
   const lightNames = Object.keys(lightThemes);

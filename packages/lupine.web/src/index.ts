@@ -4,7 +4,6 @@ import { JSXInternal } from './jsx';
 export * from './jsx';
 export * from './core';
 export * from './lib';
-export * from './components';
 export * from './models';
 export * from './styles';
 

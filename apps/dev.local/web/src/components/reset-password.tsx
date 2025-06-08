@@ -6,7 +6,7 @@ import {
   getRenderPageProps,
   NotificationColor,
   NotificationMessage,
-} from 'lupine.web';
+} from 'lupine.components';
 import { Footer } from './footer';
 
 const fetchCode = async (username: string) => {

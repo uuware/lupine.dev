@@ -1,4 +1,4 @@
-import { CssProps, MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.web';
+import { CssProps, MediaQueryMaxWidth, MediaQueryRange, PageProps } from 'lupine.components';
 import { HomeSearchComponent } from '../components/home-search-component';
 
 export const UserHomePage = async (props: PageProps) => {
