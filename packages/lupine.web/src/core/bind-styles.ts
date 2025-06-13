@@ -159,10 +159,11 @@ if (typeof document !== 'undefined') {
   });
 }
 
-const clearGlobalStyles = () => {
-  // reset unique id
-  _globalStyle.clear();
-};
+// 不能清空，在index.tsx中加载的只会被加载一次，清空了就没有了
+// const clearGlobalStyles = () => {
+//   // reset unique id
+//   _globalStyle.clear();
+// };
 // bindPageResetEvent(clearGlobalStyles);
 
 export const generateAllGlobalStyles = () => {
@@ -175,6 +176,6 @@ export const generateAllGlobalStyles = () => {
     result.push(`<style id="sty-${uniqueStyleId}">${cssText}</style>`);
   }
 
-  clearGlobalStyles();
+  // clearGlobalStyles();
   return result.join('');
 };
