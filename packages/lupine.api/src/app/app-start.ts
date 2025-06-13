@@ -24,6 +24,7 @@ class AppStart {
     this.bindProcess();
 
     appCache.set(AppCacheGlobal, AppCacheKeys.APP_DEBUG, props.debug);
+    appCache.set(AppCacheGlobal, AppCacheKeys.APP_ENV_FILE, props.appEnvFile);
     appCache.set(AppCacheGlobal, AppCacheKeys.START_TIME, new Date());
     appCache.set(AppCacheGlobal, AppCacheKeys.RENDER_PAGE_FUNCTIONS, props.renderPageFunctions);
     const appsList = props.apiConfig.webHostMap.map((item) => item.appName);

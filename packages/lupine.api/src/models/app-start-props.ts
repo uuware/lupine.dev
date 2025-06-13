@@ -11,6 +11,7 @@ export type InitStartProps = {
 
 export type AppStartProps = {
   debug: boolean;
+  appEnvFile: string;
   apiConfig: AppLoaderProps;
   serverConfig: InitStartProps;
   renderPageFunctions: RenderPageFunctionsType;

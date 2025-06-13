@@ -1,4 +1,4 @@
-import { DbConfig, DbHelper, HostToPathProps, IApiBase, ServerRequest } from 'lupine.api';
+import { DbConfig, DbHelper, HostToPathProps, IApiBase, loadEnv, ServerRequest } from 'lupine.api';
 import { ServerResponse } from 'http';
 import path from 'path';
 import { apiCache, asyncLocalStorage, bindRenderPageFunctions } from '.';
@@ -24,6 +24,12 @@ export class ApiModule implements IApiModule {
 
   // appCache is from app-loader (parent scope), not the same in current scope
   public async initApi(appConfig: HostToPathProps, appCacheFromApp: IAppCache, appStorageFromApp: IAppSharedStorage) {
+
+    const evnFile = appCacheFromApp.get(AppCacheGlobal, AppCacheKeys.APP_ENV_FILE);
+    if (evnFile) {
+      await loadEnv(evnFile);
+    }
+
     // set app's instances to api
     setAppCache(appCacheFromApp);
     // setAppStorage(appStorageFromApp);

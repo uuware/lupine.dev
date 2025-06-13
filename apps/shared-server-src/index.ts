@@ -47,8 +47,9 @@ const initAndStartServer = async () => {
 
   // Can't use log until initApp is called (after AppStart.start)
   await appStart.start({
-    renderPageFunctions: getRenderPageFunctions(),
     debug: process.env[ServerEnvKeys.NODE_ENV] === 'development',
+    appEnvFile: envFile,
+    renderPageFunctions: getRenderPageFunctions(),
     apiConfig: {
       serverRoot: `${serverRootPath}`,
       webHostMap: webRootMap,
