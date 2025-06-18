@@ -5,7 +5,11 @@ export const parseCookies = (str: string | undefined) => {
   let obj: { [key: string]: string } = {};
   if (str) {
     for (let m; (m = rx.exec(str)); ) {
-      obj[m[1]] = decodeURIComponent(m[2]);
+      try {
+        obj[m[1]] = decodeURIComponent(m[2]);
+      } catch (error) {
+        console.error('parseCookies error for: ' + m[2], error);
+      }
     }
   }
   return obj;
