@@ -120,6 +120,9 @@ export const TableListPage = () => {
                   , count: {item.count}
                   <div>sql: {item.sql},</div>
                   <div class={'row-box'}>
+                    <button onClick={() => openTablePanel(item.tbl_name)} class='button-base button-s'>
+                      Browse
+                    </button>
                     <button onClick={() => onDownload(item.tbl_name)} class='button-base button-s'>
                       Download
                     </button>

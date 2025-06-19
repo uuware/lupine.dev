@@ -8,6 +8,7 @@ const logger = new Logger('admin-auth');
 export const needDevAdminSession = async (req: ServerRequest, res: ServerResponse) => {
   const devAdminSession = await adminHelper.getDevAdminFromCookie(req, res, true);
   if (!devAdminSession) {
+    // return true to skip the rest of the middleware
     return true;
   }
   return false;
